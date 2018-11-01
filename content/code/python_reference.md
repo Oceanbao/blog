@@ -7,5 +7,9 @@ draft: false
 
 Notebook referencing python general codes.
 
-<iframe src="https://colab.research.google.com/drive/1ryf4YLA0ahETDLJUVYj_oC-CRu46js5P" name="notebook" style="border:none;"></iframe>
+[python_reference](https://colab.research.google.com/drive/1ryf4YLA0ahETDLJUVYj_oC-CRu46js5P)
+
+
+
+
 
