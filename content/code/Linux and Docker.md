@@ -10,4 +10,4 @@ tags: ["code","image"]
 
 ![Docker](/code/DockerMAP.png)
 
-![ML](/data/ML_MAP.pdf)
+[ML](/data/ML_MAP.pdf)
