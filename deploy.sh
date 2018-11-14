@@ -2,10 +2,10 @@
 
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
-rm -rf public 
+rm -rf public
 
 # Build the project.
-hugo # if using a theme, replace with `hugo -t <YOURTHEME>`
+hugo -t sam # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Updating local folder
 git add . && git commit -m "building site `date`" && git push origin master
