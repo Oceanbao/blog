@@ -29,6 +29,3 @@ git push origin master
 
 # Come Back up to the Project Root
 cd ..
-
-# Updating local folder
-git add . && git commit -m "building site `date`" && git push origin master
