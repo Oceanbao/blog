@@ -1,10 +1,14 @@
-# OmniCode Ocean Ode
 ---
+title: "OMNICODE"
+date: 2018-10-22T16:02:02-04:00
+showDate: true
+tags: ["code", "ml"]
+---
+
+
 
 
 # UNIX
----
-
 ### Find file in current dir with filename, full path printed
 find "$(pwd -P)" -name ".zshrc"
 
@@ -114,35 +118,40 @@ whereis # show location of files
 which filename # location of a file if it is in PATH
 ```
 
+
+
 ### Scheduling Task CRON
 
 [article](https://kvz.io/blog/2007/07/29/schedule-tasks-on-linux-using-crontab/)
 
+## Regex e.g. using sed (stream editor)
 
-### RegExpression e.g. using sed (stream editor)
-`cat /etc/passwd | sed # dump to sed pattern space (i.e. /pattern/action)`
-#### p (prints line)
-#### d (delete line)
-#### s/pattern1/pattern2/ (sub 1 with 2)
-`examples ( '4, 10d' '4, +5d' '2, 5!d' '1~3d') (sed -n '1, 3p')`
-
-`sed 's/old/new/g' (global sub) [-p if subbed, print] [-w FILENAME write sub result to file] [-I -i case] [M or m empty string]`
-#### Example: matching phone number (chaining)
-`sed -e 's/^[[:digit:]]\{3\}/(&)/g' -e 's/)[[:digit:]]\{3\}/&-/g' phone.txt`
-##### output: (555)555-1212 ...
-`sed '/^daemon/d' # match starting-deamon and delete`
-`sed '/sh$/d' # del sh-ending`
-##### special char: ^ $ . (any single char) * (>0 of previous char) [chars]
+cat /etc/passwd | sed # dump to sed pattern space (i.e. /pattern/action)
+### p (prints line)
+### d (delete line)
+### s/pattern1/pattern2/ (sub 1 with 2)
+examples ( '4, 10d' '4, +5d' '2, 5!d' '1~3d') (sed -n '1, 3p')
+sed 's/old/new/g' (global sub) [-p if subbed, print] [-w FILENAME write sub result to file] [-I -i case] [M or m empty string]
+Example: matching phone number (chaining)
+sed -e 's/^[[:digit:]]\{3\}/(&)/g' -e 's/)[[:digit:]]\{3\}/&-/g' phone.txt
+### output: (555)555-1212 ...
+sed '/^daemon/d' # match starting-deamon and delete
+sed '/sh$/d' # del sh-ending
+### special char: ^ $ . (any single char) * (>0 of previous char) [chars]
 
 ### Making a BIN exec of any application
-`Scripting {#!/bin/bash /Application/LibreOffice.app/Contents/MacOS/soffice "$@"}`
+### Scripting {#!/bin/bash /Application/LibreOffice.app/Contents/MacOS/soffice "$@"}
 ### Put .sh under /usr/local/bin named soffice
-`sudo chmod +x /usr/local/bin/soffice`
+sudo chmod +x /usr/local/bin/soffice
 ### convert excel to pdf
-`soffice --headless --convert-to pdf:"filename" /path/.xlsx`
+soffice --headless --convert-to pdf:"filename" /path/.xlsx
+
+
+
+
 
 # PYTHON and symlink
----
+
 
 ### Learnt about ln cmd to link .sh
 `brew unlink python && brew link python`
@@ -213,6 +222,80 @@ def download_extract_zip(url):
             with thezip.open(zipinfo) as thefile:
                 yield zipinfo.filename, thefile
 ```
+
+## Basic
+
+```python
+# BASE TYPES (immutable)
+int 783 0(null) 0b010(binary) 0o642(octal) 0xF3(hexa)
+float 9.23 0.0 -1.7e-6
+bool True False
+str "One\nTwo" "I\'m" """X\t\Y\tZ"""
+bytes b"toto\xfe\775"
+
+# CONTAINER TYPES
+# Ordered Sequences (fast index access, repeatable values)
+list [1, 5, 9] ["x", 11, 8.9] ["mot"]
+tuple (1, 5, 9) 11,"y",7.4 ("mot",) # immutable
+str bytes # immutable
+# key containers (no a priori order, fast key access, each key unique)
+dict {"key":"value"} dict(a=3, b=4, k="v")
+set {"key1", "key2"} {1, 9, 3, 0} # keys=hasable values (base types, immutables)
+frozenset # immutable set
+
+# IDENTIFIERS (for var, fuc, modules, classes.. names)
+a...zA...Z_ a...zA...Z_0...9
+	# diacritics allowed but should be avoided
+    # language keywords forbidden
+    # lower/UPPER discrimination
+    	# (yes) a toto x7 y_max BigOne
+        # (no) 8y and for
+
+# VAR
+a=b=c=0 # assignemnt to same value
+a, b = b, a
+a, *b = seq
+*a, b = seq # unpacking of sequence in item and list
+del x
+
+# CONVERSION
+int("15") -> 15
+int("3f", 16) -> 63 # integer number base in 2nd param)
+int(15.56) -> 15 
+float("-11.25e8") -> -1124000000.0
+round(15.56, 1) -> 15.6
+bool(x) -> Flase for NULL x, empty container x, None or False x; True else
+str(x) -> "..." # repr string of x for display 
+chr(64) -> "@" ord('@') -> 64 # code and char
+repr(x) -> "...." # literal repr string of x
+bytes( [72, 9, 64] ) -> b'H\t@'
+list("abc") -> ['a', 'b', 'c']
+dict([(3, "three"), (1, "one")]) -> {1:'one', 3:'three'}
+set(["one", "two"]) -> {'one', 'two'}
+#separator str and sequence of str -> assembled str
+':'.join(['toto', '12', 'pswd']) -> 'toto:12:pswd'
+# str splitted on whitespsaces -> list of str
+"words with spaces".split() -> ['words', 'with', 'spaces']
+# str splitted on separator str -> list of str
+"1,4,8,2".split(",") -> ['1','4','8','2']
+# sequence of one type -> list of another type (via COMP)
+[int(x) for x in ('1', '29', '-3')] -> [1,29,3]
+
+# SEQUENCE CONTAINERS INDEXING (lists, tuples, strings, bytes)
+# [start:end:step]
+
+# EXCEPTION ON ERROR
+# signaling error
+raise Exception(...)
+finally # block for final processing in all cases
+# error processing:
+try:
+    # normal processing block
+except Exception as e:
+    # error processing block
+```
+
+
 
 
 
@@ -449,195 +532,9 @@ True
 
 
 
-### Tutorial Basic Code
-
-```python
-# String & Console
-'''% operator after string to combine a string with variables'''
-
-# Date and Time
-from datetime import datetime
-now = datetime.now()
-now.year
-now.month
-print('%s/%s/%s %s:%s:%s'  % (now.month, now.day, now.year, now.hour, now.minute, now.second))
-
-# LIST
-n = [1, 2, 3]
-n[1]
-n.append(4)
-n.pop(index)
-n.remove(item)
-del(n[index])
-
-# Math
-import math
-everything = dir(math)
-print(everything)
-
-# Arguments
-''' *args make it able to take more than 1 argument, otherwise raise error '''
-def biggest_num(*args):
-    print(max(args))
-biggest_num(-10, -5, 5, 10)
-
-# Index
-animals.insert(animals.index("duck"), "cobra") 
-	# use index() to find "duck" and then insert new value
-list.sort()
-list.sorted()
-
-for key in prices:
-    print(key)
-    print("price: %s" % prices[key])
-
-# DICT
-letters = ['a', 'b', 'c', 'd']
-print(" ".join(letters))
-
-from random import randint
-coin = randint(0, 1)
-
-number = raw_input("Enter a number: ")
-if int(number) == 0:
-    print("You entered 0")
-    
-for index, item in enumerate(choices):
-    print(index+1, item)
-
-# Iterate two LIST at once, zip() paris and pass to one LIST
-list_a = [3, 9, 8]
-list_b = [2, 4, 8, 10]
-for a, b in zip(list_a, list_b):
-    #code
-    print(max(a,b))
-
-def factorial(x):
-    ilist = range(x)
-    isum = 1
-    for i in ilist:
-        isum *= i+1
-        return isum
-def censor(text, word):
-    text = text.split()
-    for i in range(len(text)):
-        if text[i] == word:
-            text[i] = "*" * len(word)
-            return " ".join(text)
-def remove_dupe(number):
-    lst = []
-    for i in range(len(number)):
-        if number[i] not in lst:
-            lst.append(number[i])
-            return lst
-
-list = filter(lambda x : f(x), list)
-list = map(lambda x : f(x), list)
-
-# BIT
-''' 1 0 1 0 = 8+0+2+0 = 10. Number is printed as 0b~ 
-EX: 0b1 = 1, ob10 = 2, etc'''
-bin() # converts num/str to binary
-int(input, base)
-	# e.g. int('11001001', 2) == 201 (in base 10)
-
-def flip_bit(number, n):
-    result = number ^ (0b1 << n-1) # nth bit
-    return bin(result)
-
-# CLASS
-'''Python is OOP, meaning it plays around objects, a single data structure spawning other data and structures.
-FUNC of object is METHOD: 
-len("Eric") -> python checks to see if the string object has a length, if so returns value associated with that ATTR'''
-
-my_dict.items()
-	# checks if it has items() method (which all DICT have) and exec it
-'''Their difference lies in their base class '''
-
-class Fruit(object):
-    """ A class making various tasty fruits """
-    def __init__(self, name, colour, flavour, poisonous):
-        self.name = name
-        self.colour = colour
-        self.flavour = flavour
-        self.poisonous = poisonous
-	def description(self):
-        print("I am a %s %s and I taste %s" % (self.colour, self.name, self.flavour))
-	def is_edible(self):
-        if not self.poisonous:
-            print("Yep! I am edible!")
-		else:
-            print("NO")
-
-lemon = Fruit("lemon", "yellow", "sour", False)
-lemon.description()
-lemon.is_edible()
-
-# A basic class consists only of KEYWORDS, NAME, INHERITANCE
-
-class NewClass(object):
-    # Class magic here
-	"""this inherits powers from object"""
-    
-'''NOTE __init__() required for classes to INIT objects to create it always takes at least one argument, SELF, referring to object being created. Think of it as fucntion BOOTS UP each object the class creates
-Python will use the first param __init__() to refer to object being created; this is why it's often called self, since this param gives the object ID.'''
-
-class ShoppingCart(object):
-    """createshopping cart"""
-    items_in_cart = {}
-    def __init__(self, customer_name):
-        self.customer_name = customer_name
-	def add_item(self, product, price):
-        if not product in self.items_in_cart:
-            self.items_in_cart[product] = price
-			print(product + " added")
-        else:
-            print(product + " is already in cart")
-	def remove_item(self, product):
-        if product in self.items_in_cart:
-            del self.items_in_cart[product]
-            print(product + " removed")
-		else:
-            print(product + " is not in cart")
-my_cart = ShoppingCart("Ocean")
-my_cart.add_item("Macbook", 1000)
-
-'''INHERITANCE is the process by which one class takes on ATTR and METHOD of another, used to express an is-are relationship.'''
-
-class Customer(object):
-    def __init__(self, customer_id):
-        self.customer_id = customer_id
-	def display_cart(self):
-        print("I am a string....")
-class ReturningCustomer(Customer):
-    def display_order_history(self):
-        print("order historye")
-monty_python = ReturningCustomer("ID: 12345")
-monty_python.display_cart()
-
-# Override parent methods or attr simply re-def the same name
-
-# BUT to access parent
-class Child(Parent):
-    def m(self):
-        return super(Child, self).m()
-    # m() is a mehtod from parent
-
-class PartTimeEmployee(Employee):
-    def calculate_wage(self, hours):
-        self.hours = hours
-		return hours * 12.00
-    def full_time_wage(self, hours):
-        return super(PartTimeEmployee, self).calculate_wage(hours)
-
-milton = PartTimeEmployee("Milton")
-print(milton.full_time_wge(10))
-	# no need to include the self keyword when creating an instance of class, as self gets added to beginning of list of inputs automatically by class definition
-```
 
 
-
-### ATOM shortcut
+## ATOM shortcut
 
 ===============================================================
 S+CMD D : duplicate lines
@@ -670,7 +567,7 @@ docker container rm <hash>        # Remove specified container from this machine
 docker container rm $(docker container ls -a -q)         # Remove all containers
 docker image ls -a                             # List all images on this machine
 docker image rm <image id>            # Remove specified image from this machine
-docker image rm ​$(docker image ls -a -q)   # Remove all images from this machine
+docker image rm $(docker image ls -a -q)   # Remove all images from this machine
 docker login             # Log in this CLI session using your Docker credentials
 docker tag <image> username/repository:tag  # Tag <image> for upload to registry
 docker push username/repository:tag            # Upload tagged image to registry
@@ -696,14 +593,13 @@ docker-machine ssh myvm1 "docker swarm leave -f" # Make master leave, kill swarm
 docker-machine ls # list VMs, asterisk shows which VM this shell is talking to
 docker-machine start myvm1            # Start a VM that is currently not running
 docker-machine env myvm1      # show environment variables and command for myvm1
-eval $(docker-machine env myvm1)         # Mac command to connect shell to myvm1
-& "C:\Program Files\Docker\Docker\Resources\bin\docker-machine.exe" env myvm1 | Invoke-Expression   # Windows command to connect shell to myvm1
-docker stack deploy -c <file> <app>  # Deploy an app; command shell must be set to talk to manager (myvm1), uses local Compose file
-docker-machine scp docker-compose.yml myvm1:~ # Copy file to node's home dir (only required if you use ssh to connect to manager and deploy the app)
-docker-machine ssh myvm1 "docker stack deploy -c <file> <app>"   # Deploy an app using ssh (you must have first copied the Compose file to myvm1)
-eval ​$(docker-machine env -u)     # Disconnect shell from VMs, use native docker
-docker-machine stop $(docker-machine ls -q)               # Stop all running VMs
-docker-machine rm ​$(docker-machine ls -q) # Delete all VMs and their disk images
+`eval $(docker-machine env myvm1)`         # Mac command to connect shell to myvm1
+docker stack deploy -<span class="">c</span> <file> <app>  # Deploy an app; command shell must be set to talk to manager (myvm1), uses loca<span class="">l</span> Compose file
+docker-machine scp docker-compose.yml myvm1:~ # Copy file to node's home dir (only required if you use ssh to connect<span class=""> </span>to manager and dep<span class="">l</span>oy the app)
+docker-machine ssh myvm1 "docker stack deploy -c <file> <app>"   # Deploy an app using ssh (you must have first copie<span class="">d</span> the Compose file to myvm<span class="">1</span>)
+`eval $(docker-machine env -u) `    # Disconnect shell from VMs, use native docker
+`docker-machine stop ​$(docker-machine ls -q)`# Stop all running VMs
+`docker-machine rm ​$(docker-machine ls -q)` # Delete all VMs and their disk images
 
 1) Lists running containers
 ​	docker ps
@@ -800,43 +696,123 @@ docker-machine rm ​$(docker-machine ls -q) # Delete all VMs and their disk ima
 ​	docker system prune -a -f --volumes
 
 14) Push image into Dockerhub
+
 ​	docker login --username <username> --password <password>
 ​	docker tage <my_image> <username/my_repo>
 ​	docker push <username/my_repo>
 
+
 15) Enter terminal after docker run
-​	docker exec -i -t <container_name> /bin/sh
+​	`docker exec -i -t <container_name> /bin/sh`
 
 16) Commit as New Image from a container's changes
-​	docker commit [OPTIONS] CONTAINER [REPO[:TAG]]
-​	-c (apply Dockerfile to the created image)
+​	`docker commit [OPTIONS] CONTAINER [REPO[:TAG]]
+​	-c (apply Dockerfile to the created image)`
 ​		The --change option will apply Dockerfile instructions to the image that is created. 
 ​		Supported Dockerfile instructions: 
-​		CMD|ENTRYPOINT|ENV|EXPOSE|LABEL|ONBUILD|USER|VOLUME|WORKDI
+​		`CMD|ENTRYPOINT|ENV|EXPOSE|LABEL|ONBUILD|USER|VOLUME|WORKD`
 ​		Example:
-​		$ docker inspect -f "{{ .Config.Env }}" c3f279d17e0a
-​		> [HOME=/ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin]
-​		$ docker commit --change "ENV DEBUG true" c3f279d17e0a  svendowideit/testimage:version3
-​		> f5283438590d
-​		$ docker inspect -f "{{ .Config.Env }}" f5283438590d
-​		> [HOME=/ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin DEBUG=true]
-​		# Commit with new CMD / EXPOSE
-​		$ docker commit --change='CMD ["apachectl", "-DFOREGROUND"]' -c "EXPOSE 80" c3f279d17e0a  svendowideit/testimage:version4
-​	-m (commit message)
-​	-p (pause container during commit)
+
+```bash
+$ docker inspect -f "{{ .Config.Env }}" c3f279d17e0a
+		> [HOME=/ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin]
+$ docker commit --change "ENV DEBUG true" c3f279d17e0a  svendowideit/testimage:version3
+		> f5283438590d
+$ docker inspect -f "{{ .Config.Env }}" f5283438590d
+		> [HOME=/ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin DEBUG=true]
+# Commit with new CMD / EXPOSE
+$ docker commit --change='CMD ["apachectl", "-DFOREGROUND"]' -c "EXPOSE 80" c3f279d17e0a  svendowideit/testimage:version4
+	-m (commit message)
+	-p (pause container during commit)
+```
+
+17) Connecting Containers (--link)
+
+```bash
+docker pull redis
+docker run -d --name redis_server redis
+docker run -it --name redis_client1 --link redis_server:redis redis bash
+docker run --rm -it --link myredis:redis redis bash
+> redis-cli -h redis -p 6379
+> set key value
+> get key
+docker run --rm --volumes-from myreids -v $(pwd)/backup:/backup debian cp /data/dum.rdb /backup/ 
+# -v mount known dir on host and --volumes-from to connect new container to Redis db folder
+
+# cat /etc/hosts
+> 127.0.0.1		localhost
+> ...
+> 172.17.0.2 	redis <container ID> redis_server
+
+# ping redis
+
+# redis-cli -h redis
+# redis:6379> PING
+> PONG
+# redis:6379> set myname ocean
+
+docker run -it --name redis_client2 --link redis_server:redis redis bash
+# redis-cli -h redis
+# redis:6379> get myname
+> ocean
+
+```
+
+### Play with Docker tutorial
+
+```bash
+docker container run \
+--detach \
+--name mydb \
+-e MYSQL_ROOT_PASSWORD=my-secret-pw \
+mysql:latest
+
+docker container logs mydb
+docker container top mydb
+
+docker container run \
+--detach \
+--publish 80:80 \
+--name linux_tweet_app \
+--mount type=bind,source="$(pwd)",target=/usr/share/nginx/html \
+$DOCKERID/linux_tweet_app:1.0
+
+
+```
+
+```dockerfile
+ FROM nginx:latest
+
+ COPY index.html /usr/share/nginx/html
+ COPY linux.png /usr/share/nginx/html
+
+ EXPOSE 80 443     
+
+ CMD ["nginx", "-g", "daemon off;"]
+```
+
+
+
+## O'reilly DOCKER
+
+```bash
+
+```
+
+
+
 
 
 # XPATH
+
 ---
 Xpath is a language for addressing parts of an XML document - 1.0
-
+```shell
 - element nodes <p>...</p> or tag
 - attribute nodes href="page.html"
 - text nodes "Some Title" NOT ELEMENTS
 - comment nodes <!-- comment... -->
 
-
-```xml
 - //html/head/title = $$$<title>....</title>$$$
 - //meta/@content = <meta content=$$$"text...stuff"$$$ http-equiv="content-type">
 - //div/div[@class="second"] = $$$<div class="second"> everything in side </div>$$$
@@ -850,10 +826,10 @@ Xpath is a language for addressing parts of an XML document - 1.0
 /html/head/title = /child:: html /child:: head /child:: title
 //meta/@content = /descendant-or-self:: node()/child:: meta/attribute:: content
 //div/div[@class="second"] = /descend-or-self::node() /child::div /child::div [ attribute::class = "second"]
-//body//*[self::ul or self::ol]//li
-	:multiple node names testing, middle-location
+//body//*[self::ul or self::ol]//li :multiple node names testing, middle-location
 ```
-**AXES = directions
+
+**AXES = directions**
 self = context
 parent, child = direct hop
 ancestor, ancestor-or-self, descendant, descendant-or-self, = multi-hop
@@ -861,7 +837,8 @@ following, following-sibling, preceding, preceding-sibling = document order
 attribute, namespace = non-element**
 
 **PREDICATE nested:**
-```
+
+```shell
 //div[p[a/@href="sample.html"]]
 * = all element nodes bar text/attribute, etc .//* != .//node()
 	@* = attribute::*	all attribute nodes
@@ -902,23 +879,23 @@ EXAMPLES:
 
 ```
 //div[ a [text() = "link"]] 	
-	:div having a tag with text 'link' = //div[ a/text()="link"]
+​	:div having a tag with text 'link' = //div[ a/text()="link"]
 //a[starts-with(@href, "https")]	
-	:all a tag with href starting with 'https'
+​	:all a tag with href starting with 'https'
 //p[ a/@href="https://scrapy.org" ]
-	:value of href attribute from all a tag
+​	:value of href attribute from all a tag
 //div[@id='footer']/preceding-sibling::text()[1]	
-	:first text node before div footer
+​	:first text node before div footer
 //p[text()="Footer text"]/..	
-	:select parent of <p> embedding 'Footer text'
+​	:select parent of <p> embedding 'Footer text'
 //*[p/text()="Footer text"]		
-	:from all tag, <p> child having text "Footer text"
+​	:from all tag, <p> child having text "Footer text"
 //li//@href 	
-	:all of href attributes under li, return its value
+​	:all of href attributes under li, return its value
 //li[re:test(@class, "item-\d$")]//@href 	
-	:like above, but only class attribute end in "item-\d$"
+​	:like above, but only class attribute end in "item-\d$"
 string(/html/head/title) 	
-	:returns string repr of elements
+​	:returns string repr of elements
 ```
 
 **VARIABLES**
@@ -1042,54 +1019,3 @@ Deploy from gh-pages branch
 	- Settings -> GitHub Pages -> Source: select 'gh-pages branch' -> Save
 	- refer to auto-script as publish_to_ghpages.sh
 	- this will abort if there are pending changes in working dir and ensure all existing output files are removed. Adjust script to need: include final push to remote repo if no need to take a look or add echo domainname.com >> CNAME if set up for customised domain
-
-
-
-# SQL
-
-```sql
-SELECT #column_name
-FROM #database
-WHERE #specific_filter
-ORDER BY #filter (e.g. ASC or DESC)
-# always end by ; 
-AND #multiple_criteria
-OR #union
-
-# Example 1
-SELECT id, title
-FROM movies
-WHERE duraction >= 86 
-AND genre = 'Horro' # NOTE AND after WHERE)
-ORDER BY duration ASC;
-
-INSERT INTO #table (#columns)
-VALUES (#data);
-
-INSERT INTO movies (id, title, genre, duration)
-VALUES (5, 'The Circus', 'Comedy', 71);
-# match sequence or order of table / or shortcut, drop code in bracket, missing data as NULL or placeholder U/A
-
-# Example 2
-INSERT INTO concessions (item, size) VALUES ('Nachos', 'Regular');
-
-UPDATE #table
-SET #column = #data
-
-DELETE FROM #table (WHERE);
-
-CREATE DATABASE #name;
-DROP DATABASE #name;
-CREATE TABLE #name
-(
-Column1 datatype,
-Column2 datatype,
-)
-
-ALTER TABLE #name
-ADD COLUMN #name #type
-DROP COLUMN #name
-```
-
-
-
