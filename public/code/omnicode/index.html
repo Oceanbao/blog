@@ -130,16 +130,20 @@ print -l folder/*/*(e:'[[ ! -e $REPLY/file ]]':)
 <h3 id="ghostscript-gs-modifying-pdf">Ghostscript: gs -modifying pdf</h3>
 
 <ol>
-<li><p>combine pdf files</p>
+<li>combine pdf files
 
 <ul>
 <li><code>gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=merged.pdf mine1.pdf mine2.pdf</code></li>
 </ul></li>
-
-<li><p>combine + super-shrink</p>
+<li>combine + super-shrink
 
 <ul>
 <li><code>gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default -dNOPAUSE -dQUIET -dBATCH -dDetectDuplicateImages -dCompressFonts=true -r150 -sOutputFile=output.pdf input.pdf</code></li>
+</ul></li>
+<li>Convert PDF to PNG
+
+<ul>
+<li><code>gs -dNOPAUSE -dBATCH -sDEVICE=png16m -sOutputFile=&quot;Pic-%d.png&quot; input.pdf</code></li>
 </ul></li>
 </ol>
 
@@ -1124,6 +1128,11 @@ Deploy from gh-pages branch</li>
             &#183; 
             <a href="/qui">
                 qui et quoi?
+            </a>
+        
+            &#183; 
+            <a href="/data/ML_MAP.pdf">
+                ML map
             </a>
         
     
