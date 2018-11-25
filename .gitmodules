@@ -1,4 +1,4 @@
 [submodule "public"]
 	path = public
-	url = git@github.com:oceanbao/oceanbao.github.io.git
+	url = https://github.com/oceanbao/oceanbao.github.io.git
 	branch = master
