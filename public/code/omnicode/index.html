@@ -610,13 +610,11 @@ CMD+CTR+G : select all matched characters</p>
 
 <p>==================================================================</p>
 
-<h2 id="display-docker-version-and-info">Display Docker version and info</h2>
+<h2 id="basic-1">Basic</h2>
 
 <p>docker &ndash;version
 docker version
 docker info</p>
-
-<h2 id="list-docker-containers-running-all-all-in-quiet-mode">List Docker containers (running, all, all in quiet mode)</h2>
 
 <p>docker container ls
 docker container ls &ndash;all
@@ -664,8 +662,8 @@ docker stack deploy -<span class="">c</span> <file> <app>  # Deploy an app; comm
 docker-machine scp docker-compose.yml myvm1:~ # Copy file to node&rsquo;s home dir (only required if you use ssh to connect<span class=""> </span>to manager and dep<span class="">l</span>oy the app)
 docker-machine ssh myvm1 &ldquo;docker stack deploy -c <file> <app>&rdquo;   # Deploy an app using ssh (you must have first copie<span class="">d</span> the Compose file to myvm<span class="">1</span>)
 <code>eval $(docker-machine env -u)</code>    # Disconnect shell from VMs, use native docker
-<code>docker-machine stop ​$(docker-machine ls -q)</code># Stop all running VMs
-<code>docker-machine rm ​$(docker-machine ls -q)</code> # Delete all VMs and their disk images</p>
+<code>docker-machine stop $(docker-machine ls -q)</code># Stop all running VMs
+<code>docker-machine rm $(docker-machine ls -q)</code> # Delete all VMs and their disk images</p>
 
 <p>1) Lists running containers
 ​   docker ps
@@ -839,6 +837,10 @@ docker container run <span style="color:#ae81ff">\
 </span><span style="color:#960050;background-color:#1e0010"></span> EXPOSE <span style="color:#ae81ff">80</span> <span style="color:#ae81ff">443</span>     <span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span> CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;nginx&#34;</span>, <span style="color:#e6db74">&#34;-g&#34;</span>, <span style="color:#e6db74">&#34;daemon off;&#34;</span><span style="color:#f92672">]</span></code></pre></div>
+<h3 id="resources-usage">Resources Usage</h3>
+
+<p><code>docker ps --format &quot;{{.Names}}&quot; | xargs docker stats</code></p>
+
 <h2 id="o-reilly-docker">O&rsquo;reilly DOCKER</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"></code></pre></div>
 <h1 id="xpath">XPATH</h1>

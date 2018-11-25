@@ -6,10 +6,19 @@
     <description>Recent content on Ocean Ode</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Nov 2018 19:31:54 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 25 Nov 2018 14:56:55 -0500</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>NLP</title>
+      <link>/code/nlp/</link>
+      <pubDate>Sun, 25 Nov 2018 14:56:55 -0500</pubDate>
+      
+      <guid>/code/nlp/</guid>
+      <description>NLP - Primer  Text, unstructured particularly, is as aboundant as important to understanding! Introduction to NN Translation with GPUs Sources  Open American Natioanl Corpus British Natioanl Corpus List of Text Corpora Wikiepedia Dataset Twitter (see Text)  Topic spotting Text classification Application  chatbot translation sentiment analysis   String Primer Unicode  Remember to include U before string to ensure Unicode String  Regular Expression - strings with special syntax  allows to match patterns in other strings Regex, import re Matching pattern with string  re.</description>
+    </item>
     
     <item>
       <title>Regex</title>

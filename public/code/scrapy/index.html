@@ -2046,29 +2046,25 @@ then use it to extract and save into ITEM key-value pairs
 
 <p>Update above code
 ​   REMOVE start_url WITH:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> __init__(self, category): <span style="color:#75715e"># constructor!</span>
+self<span style="color:#f92672">.</span>start_urls <span style="color:#f92672">=</span> [category] 
 
-<pre><code>def __init__(self, category): # constructor!
-self.start_urls = [category] 
-
-THIS CREATES A ARGUMENT-ABLE FOR __INIT__
-used in Shell: 
-scrapy crawl bookspider -a category=&quot;category_specific_URL&quot;
-</code></pre>
-
+THIS CREATES A ARGUMENT<span style="color:#f92672">-</span>ABLE FOR __INIT__
+used <span style="color:#f92672">in</span> Shell: 
+scrapy crawl bookspider <span style="color:#f92672">-</span>a category<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;category_specific_URL&#34;</span></code></pre></div>
 <h3 id="9-scrapy-functions-executed-at-end-of-crawling">(9) Scrapy Functions: executed at end of crawling</h3>
 
-<p>Anything needed to run, cleaning, sending, etc.</p>
+<p>Anything needed to run, cleaning, sending, etc. Defined inside Spider.py</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># EX overriding output filename.csv a function postprocessing </span>
 
-<pre><code>import os
-import glob
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> glob
 
-	def close(self, reason):
-		csv_file = max(glob.iglob('*.csv'), keys=os.path.getctime)
-		os.rename(csv_file, 'foobar.csv')
+	<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">close</span>(self, reason):
+		csv_file <span style="color:#f92672">=</span> max(glob<span style="color:#f92672">.</span>iglob(<span style="color:#e6db74">&#39;*.csv&#39;</span>), keys<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>getctime)
+		os<span style="color:#f92672">.</span>rename(csv_file, <span style="color:#e6db74">&#39;foobar.csv&#39;</span>)
 
-&gt;&gt; ... -o item.csv
-</code></pre>
-
+<span style="color:#f92672">&gt;&gt;</span> <span style="color:#f92672">...</span> <span style="color:#f92672">-</span>o item<span style="color:#f92672">.</span>csv</code></pre></div>
 <h3 id="10-feeding">(10) Feeding</h3>
 
 <p>&hellip; -o items.csv/json/xml # items can be whatever</p>
@@ -2077,13 +2073,10 @@ import glob
 
 <p>Best first define Item class in items.py with all required datapoints + image
 Then change settings.py</p>
-
-<pre><code>ITEM_PIPELINES = {
-	'scrapy.pipelines.images.ImagesPipeline': 1,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ITEM_PIPELINES <span style="color:#f92672">=</span> {
+	<span style="color:#e6db74">&#39;scrapy.pipelines.images.ImagesPipeline&#39;</span>: <span style="color:#ae81ff">1</span>,
 }
-IMAGES_STORE = 'local/folder'
-</code></pre>
-
+IMAGES_STORE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;local/folder&#39;</span></code></pre></div>
 <p>Then add ItemLoader and items.definedClass in spider.py</p>
 </div>
 

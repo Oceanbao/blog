@@ -547,12 +547,11 @@ CMD+CTR+G : select all matched characters
 
 ## DOCKER
 ==================================================================
-## Display Docker version and info
+## Basic
 docker --version
 docker version
 docker info
 
-## List Docker containers (running, all, all in quiet mode)
 docker container ls
 docker container ls --all
 docker container ls -aq
@@ -599,8 +598,8 @@ docker stack deploy -<span class="">c</span> <file> <app>  # Deploy an app; comm
 docker-machine scp docker-compose.yml myvm1:~ # Copy file to node's home dir (only required if you use ssh to connect<span class=""> </span>to manager and dep<span class="">l</span>oy the app)
 docker-machine ssh myvm1 "docker stack deploy -c <file> <app>"   # Deploy an app using ssh (you must have first copie<span class="">d</span> the Compose file to myvm<span class="">1</span>)
 `eval $(docker-machine env -u) `    # Disconnect shell from VMs, use native docker
-`docker-machine stop ​$(docker-machine ls -q)`# Stop all running VMs
-`docker-machine rm ​$(docker-machine ls -q)` # Delete all VMs and their disk images
+`docker-machine stop $(docker-machine ls -q)`# Stop all running VMs
+`docker-machine rm $(docker-machine ls -q)` # Delete all VMs and their disk images
 
 1) Lists running containers
 ​	docker ps
@@ -793,6 +792,10 @@ $DOCKERID/linux_tweet_app:1.0
 ```
 
 
+
+### Resources Usage
+
+`docker ps --format "{{.Names}}" | xargs docker stats`
 
 ## O'reilly DOCKER
 

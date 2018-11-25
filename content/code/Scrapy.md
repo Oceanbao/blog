@@ -1689,7 +1689,7 @@ class BooksSpider(Spider):
 ### (8) Arguments: e.g. isolating 'book categories'
 Update above code
 ​	REMOVE start_url WITH:
-```
+```python
 def __init__(self, category): # constructor!
 self.start_urls = [category] 
 
@@ -1699,8 +1699,11 @@ scrapy crawl bookspider -a category="category_specific_URL"
 ```
 
 ### (9) Scrapy Functions: executed at end of crawling
-Anything needed to run, cleaning, sending, etc.
-```
+Anything needed to run, cleaning, sending, etc. Defined inside Spider.py
+
+```python
+# EX overriding output filename.csv a function postprocessing 
+
 import os
 import glob
 
@@ -1718,7 +1721,7 @@ import glob
 ### (11) Image Download via built-in ImagesPipeline
 Best first define Item class in items.py with all required datapoints + image
 Then change settings.py
-```
+```python
 ITEM_PIPELINES = {
 	'scrapy.pipelines.images.ImagesPipeline': 1,
 }
