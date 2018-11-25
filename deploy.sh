@@ -2,8 +2,19 @@
 
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
+
+# Deleting old public folder content
+echo "Deleting old public content"
+
+echo "Updating blog content"
+
 # Build the project.
 hugo -t sam # if using a theme, replace with `hugo -t <YOURTHEME>`
+
+git add .
+git commit -m "Site update `date`"
+git push origin master
+
 
 # Go To Public folder
 cd public
