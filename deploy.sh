@@ -3,11 +3,6 @@
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
 
-# Deleting old public folder content
-echo "Deleting old public content"
-
-rm -rf public
-
 
 echo "Updating blog folder"
 
