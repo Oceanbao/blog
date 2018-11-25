@@ -8,7 +8,11 @@ rm -rf public
 hugo -t sam # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Updating local folder
-git add . && git commit -m "building site `date`" && git push origin master
+git add .
+
+git commit -m "building site `date`"
+
+git push origin master
 
 
 # Go To Public folder
@@ -21,6 +25,7 @@ msg="rebuilding site `date`"
 if [ $# -eq 1 ]
   then msg="$1"
 fi
+
 git commit -m "$msg"
 
 # Push source and build repos.

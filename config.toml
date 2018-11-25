@@ -41,7 +41,3 @@ pygmentsCodefences      = true
 [[params.mainMenu]]
     link = "/qui"
     text = "qui et quoi?"
-
-[[params.mainMenu]]
-    link = "/static/ML_MAP.pdf"
-    text = "ML map"
