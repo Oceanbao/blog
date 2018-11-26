@@ -6,6 +6,7 @@ draft: false
 ---
 
 # NLP - Primer
+
 - Text, unstructured particularly, is as aboundant as important to understanding!
 - [Introduction to NN Translation with GPUs](https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part2/)
 - Sources
@@ -1844,13 +1845,13 @@ if __name__ == '__main__':
 - BUT BIG PICTURE and theme! 
 - Definition
 > Probabilistic model having info on topics in the text
->     1. Topic can be theme, or underlying ideas EX corpus of news topically weather, politics, sports etc
->     2. Useful to Represent documents as topic DISTRIBUTIONS ! (instead of BOW or TF-IDF)
->     3. Cluster in topics, further zoom in one topic to decipher deeper topics/themes !!
->     4. Chronological / time-stamped Topic variation reveals info (DYNAMIC TOPIC MODELING)
->     5. NOTE TOPIC ~ Distribution(Words) NOT labelled or titled (e.g. weather is a collection of sun, temperature, storm, forecast) 
->     6. Human assign topic from Distribution
->     7. Theoretical Papers [Blei LDA](http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf), [Edwin Chen](http://blog.echen.met/2011/08/22/introduction-to-latent-dirichlet-allocation/), [Blei Probabilistic Topic Models](http://www.cs.columbia.edu/~blei/papers/Blei2012.pdf)
+> ​    1. Topic can be theme, or underlying ideas EX corpus of news topically weather, politics, sports etc
+> ​    2. Useful to Represent documents as topic DISTRIBUTIONS ! (instead of BOW or TF-IDF)
+> ​    3. Cluster in topics, further zoom in one topic to decipher deeper topics/themes !!
+> ​    4. Chronological / time-stamped Topic variation reveals info (DYNAMIC TOPIC MODELING)
+> ​    5. NOTE TOPIC ~ Distribution(Words) NOT labelled or titled (e.g. weather is a collection of sun, temperature, storm, forecast) 
+> ​    6. Human assign topic from Distribution
+> ​    7. Theoretical Papers [Blei LDA](http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf), [Edwin Chen](http://blog.echen.met/2011/08/22/introduction-to-latent-dirichlet-allocation/), [Blei Probabilistic Topic Models](http://www.cs.columbia.edu/~blei/papers/Blei2012.pdf)
 
 #### Topic Models in GENSIM
 
@@ -1976,8 +1977,8 @@ display_topics(nmf, tfidf_feature_names, no_top_words)
 #### Exploring Documents after Satisfactory TM runs
 - [Top Methods](https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/topic_methods.ipynb)
 > As shown, based on context, most likely topics associated with a word can vary, differing from `get_term_topics` where it is a STATIC Topic Distribution
->     1. NOTE GENSIM implementation of LDA uses **VARIATIONAL BAYES SAMPLING**, a `word_type` in doc is onlly given one Topic Distribution. E.g. `the bank by the river bank` is likely to be assigned to topic_0 and each of bank word instances has the same distribution
->     2. These 2 methods ensemble to infer further info from using TM - topic distribution means able to use info to do some visualisation - colour all words in doc based on which topic belonging to, or usng distance metrics to infer how close or far pairs of topics are
+> ​    1. NOTE GENSIM implementation of LDA uses **VARIATIONAL BAYES SAMPLING**, a `word_type` in doc is onlly given one Topic Distribution. E.g. `the bank by the river bank` is likely to be assigned to topic_0 and each of bank word instances has the same distribution
+> ​    2. These 2 methods ensemble to infer further info from using TM - topic distribution means able to use info to do some visualisation - colour all words in doc based on which topic belonging to, or usng distance metrics to infer how close or far pairs of topics are
 - [Distance Metric](https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/distance_metrics.ipynb)
 - [SKL Implementation](https://towardsdatascience.com/improving-the-interpretation-of-topic-models-87fd2ee3847d)
 
@@ -2041,8 +2042,8 @@ for num_topics in range(1, limit):
 #### Clustering
 - RECAP
     > so far processing text or corpus via POS, NER, what kind of words present; in TM to seek theme hidden;
-    >     1. TM could be used to cluster articles, BUT it is NOT its purpose!
-    >     2. E.g. after performing TM, a doc can be made of 30% topic 1, 30% topic 2, etc, hence no way to cluster
+    > ​    1. TM could be used to cluster articles, BUT it is NOT its purpose!
+    > ​    2. E.g. after performing TM, a doc can be made of 30% topic 1, 30% topic 2, etc, hence no way to cluster
 - Datapoint as documents or words 
 - EXTRA CAUTION of Text: high number of dimension in text vector !! - entire vocab or corpus (Best effort via of DimReduction via SVD, LDA, LSI, etc)
 - Pipeline: rid of stop, lemmatise, vectorise
@@ -2274,30 +2275,30 @@ mz_keywords(text,scores=True,weighted=False,threshold=1.0)
     >       2. Skip Gram - [Word2Vec Tutorial](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model)\
     >   - [The amazing power of word vectors](https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors)
     >   - [Resources Page](http://mccormickml.com/2016/04/27/word2vec-resources/)
-    >   while it remians most POPULAR word vectoriser, not first time attempted not last - others to follow
+    >     while it remians most POPULAR word vectoriser, not first time attempted not last - others to follow
 
 #### W2V with GENSIM
 - [Code history](https://rare-technologies.com/deep-learning-with-word2vec-and-gensim)
 - [Online Interactive Tutorial](https://rare-technologies.com/word2vec-tutorial)
 - #### Importancy of `word2vec` class and `KeyedVector` which tuning relies heavily on
     > List of Params for `word2vec.Word2Vec`
-    >     1. SG defines algo default=0 CBOW used or =1 Skip-gram
-    >     2. SIZE dimensionality of feature vectors
-    >     3. WINDOW max distance entre current-predicted word within a sentence
-    >     4. ALPHA initial learning rate (linearly drop to `min_alpha`)
-    >     5. SEED randNumGenerator, initial vectors for each word seeded with hash of concatenation of word + str(seed), NOTE for fully deterministically reproducible run, must also LIMIT the model to SINGLE WORKER THREAD, eliminating ordering jitter from OS thread scheduling
-    >     6. MIN_COUNT ignore all words with a total freq lower
-    >     7. MAX_VOCAB_SIZE lmit RAM during vocab building; if more unique, prune infrequent ones. Every 10m word types need about 1 GB of RAM (None for no limit as default)
-    >     8. SAMPLE threshold for configuring which higer-freq words randomly downsampled; default 1e-3 useful (0, 1e-5)
-    >     9. WORKERS use threads to train (faster with multicore)
-    >     10. HS if 1, hierarchical softmax used else 0 negative is non-zero, negative sampling used
-    >     11. NEGATIVE if > 0, negative smaple
-    >     12. CBOW_MEAN if 0, use sum of context word vectors, 1 for mean
-    >     13. HASHFXN hash func use to randomly init weights, for rised training reproducibility - default is Python\s rudimentary hash func
-    >     14. ITER num of iterations or epochs over corpus default 5
-    >     15. TRIM_RULE vocab trimming rule discard if word count < min_cuount (If none, min_count used, or callable accpeting params like word, count and min_count, returns either utils.RULE_DISCARD, UTILS.RULE_KEEP OR UTILS.RULE_DEFAULT) NOTE if given, only used to prune during build_vocab and not stored as part of model
-    >     16. SORTED_VOCAB if 1 default sort desc before assigning index
-    >     17. BATCH_WORDS target size in words passed to worker threas default 10k
+    > ​    1. SG defines algo default=0 CBOW used or =1 Skip-gram
+    > ​    2. SIZE dimensionality of feature vectors
+    > ​    3. WINDOW max distance entre current-predicted word within a sentence
+    > ​    4. ALPHA initial learning rate (linearly drop to `min_alpha`)
+    > ​    5. SEED randNumGenerator, initial vectors for each word seeded with hash of concatenation of word + str(seed), NOTE for fully deterministically reproducible run, must also LIMIT the model to SINGLE WORKER THREAD, eliminating ordering jitter from OS thread scheduling
+    > ​    6. MIN_COUNT ignore all words with a total freq lower
+    > ​    7. MAX_VOCAB_SIZE lmit RAM during vocab building; if more unique, prune infrequent ones. Every 10m word types need about 1 GB of RAM (None for no limit as default)
+    > ​    8. SAMPLE threshold for configuring which higer-freq words randomly downsampled; default 1e-3 useful (0, 1e-5)
+    > ​    9. WORKERS use threads to train (faster with multicore)
+    > ​    10. HS if 1, hierarchical softmax used else 0 negative is non-zero, negative sampling used
+    > ​    11. NEGATIVE if > 0, negative smaple
+    > ​    12. CBOW_MEAN if 0, use sum of context word vectors, 1 for mean
+    > ​    13. HASHFXN hash func use to randomly init weights, for rised training reproducibility - default is Python\s rudimentary hash func
+    > ​    14. ITER num of iterations or epochs over corpus default 5
+    > ​    15. TRIM_RULE vocab trimming rule discard if word count < min_cuount (If none, min_count used, or callable accpeting params like word, count and min_count, returns either utils.RULE_DISCARD, UTILS.RULE_KEEP OR UTILS.RULE_DEFAULT) NOTE if given, only used to prune during build_vocab and not stored as part of model
+    > ​    16. SORTED_VOCAB if 1 default sort desc before assigning index
+    > ​    17. BATCH_WORDS target size in words passed to worker threas default 10k
 - [Notebook](https://github.com/bhargavvader/personal/blob/master/notebooks/text_analysis/word2vec.ipynb)
 - [GENSIM TUtorial](https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/online_w2v_tutorial.ipynb)
 - Training on generic corpus preferable - [Text8 from Wiki](http://mattmahoney.net/dc/text/data.html)
@@ -2635,9 +2636,9 @@ from keras.datasets import imdb
 ```
 
 > Notes
->     1. Not using text preprocess moduels as IMDB dataset already cleaned
->     2. LSTM for classification, a variant of RNN
->     3. LSTM is mere Layer inside `Sequential` model
+> ​    1. Not using text preprocess moduels as IMDB dataset already cleaned
+> ​    2. LSTM for classification, a variant of RNN
+> ​    3. LSTM is mere Layer inside `Sequential` model
 
 ```python
 max_features = 20000
@@ -2815,10 +2816,10 @@ model.fit(x_train, y_train,
           validation_data=(x_val, y_val))
 ```
 > Here used different measure for calcu loss; above illustrates basic LSTM, a CNN and a CNN using pretrained word embeddings
->     1. See progressive rise in performance of each networkds
->     2. Embeddings are esp. useful when not much data
->     3. CNN generally perform better than Sequential, those using word-embedding even better
->     4. Useful to train and compare with Non-NN model such as NB or SVM
+> ​    1. See progressive rise in performance of each networkds
+> ​    2. Embeddings are esp. useful when not much data
+> ​    3. CNN generally perform better than Sequential, those using word-embedding even better
+> ​    4. Useful to train and compare with Non-NN model such as NB or SVM
 
 #### Classification with SpaCy
 - While keras works esp. well in standalone text classification, it might be useuful to use Keras plus spaCy
@@ -2827,9 +2828,9 @@ model.fit(x_train, y_train,
     2. Keras
 - Example 1 [code](https://github.com/explosion/spaCy/blob/master/examples/deep_learning_keras.py)
     > Set up
-    >     1. This example shows how to use an LSTM sentiment classification model trained using Keras in spaCy. spaCy splits the document into sentences, and each sentence is classified using the LSTM. The scores for the sentences are then aggregated to give the document score. 
-    >     2. This kind of hierarchical model is quite difficult in "pure" Keras or Tensorflow, but it's very effective. The Keras example on this dataset performs quite poorly, because it cuts off the documents so that they're a fixed size. This hurts review accuracy a lot, because people often summarise their rating in the final sentence
-    >     3. Prerequesit: spacy download en_vectors_web_lg / pip install keras==2.0.9 / Compatible with: spaCy v2.0.0+
+    > ​    1. This example shows how to use an LSTM sentiment classification model trained using Keras in spaCy. spaCy splits the document into sentences, and each sentence is classified using the LSTM. The scores for the sentences are then aggregated to give the document score. 
+    > ​    2. This kind of hierarchical model is quite difficult in "pure" Keras or Tensorflow, but it's very effective. The Keras example on this dataset performs quite poorly, because it cuts off the documents so that they're a fixed size. This hurts review accuracy a lot, because people often summarise their rating in the final sentence
+    > ​    3. Prerequesit: spacy download en_vectors_web_lg / pip install keras==2.0.9 / Compatible with: spaCy v2.0.0+
 
 ```python
 import plac
@@ -3059,12 +3060,12 @@ if __name__ == '__main__':
     plac.call(main)
 ```
 > First few lines set up model folder and load dataset / then check print run time info, if not training is not complete proceeding to train, train and save model 
->     1. Running, saving using model in pipelines is huge motif behind Keras and SpaCy in such a way
->     2. KEY here updating `sentiment` attri for each doc (how is optional)
->     3. SpaCy GOOD at not removing or truncating input - as users tend to sum up review in last sentence of documents with a lot of sentiment inferred
->     4. HOW to USE? model adds one more attribute to doc, `doc.sentiment` caputuring 
->     5. Verify by loading saved model and run any document through pipelien the same way through prevous POS, NER and Dep-parsing `doc = nlp(document)`
->     6. `nlp` is pipeline obj of loaded model trained, `docuemnt` any unicode text wish to analyse
+> ​    1. Running, saving using model in pipelines is huge motif behind Keras and SpaCy in such a way
+> ​    2. KEY here updating `sentiment` attri for each doc (how is optional)
+> ​    3. SpaCy GOOD at not removing or truncating input - as users tend to sum up review in last sentence of documents with a lot of sentiment inferred
+> ​    4. HOW to USE? model adds one more attribute to doc, `doc.sentiment` caputuring 
+> ​    5. Verify by loading saved model and run any document through pipelien the same way through prevous POS, NER and Dep-parsing `doc = nlp(document)`
+> ​    6. `nlp` is pipeline obj of loaded model trained, `docuemnt` any unicode text wish to analyse
 
 - Non-NN classifier
     1. proba of duc belonging to particular class
@@ -3221,9 +3222,9 @@ print(test_text, doc.cats)
 - Production-grade API **RASA NLU** and **ChatterBot**
 - RASA [JSON-data Example](https://github.com/RASAHQ/rasa_nlu/blob/master/data/examples/rasa/demo-rasa.json)
     > adding more entites and intent, model laerns more context better decipher questions - one of backend is SpaCy and SKL
-    >     1. UnderHood, Word2Vec for intent, spaCy clean up text, SLK build models - [detail](https://medium.com/rasa-blog/do-it-yourself-nlp-for-bot-developers-2e2da2817f3f) 
-    >     2. One of which involves being able to write own parts of bot instead of API
-    >     3. JSON entry/data to train RASA (see elsewhere)
+    > ​    1. UnderHood, Word2Vec for intent, spaCy clean up text, SLK build models - [detail](https://medium.com/rasa-blog/do-it-yourself-nlp-for-bot-developers-2e2da2817f3f) 
+    > ​    2. One of which involves being able to write own parts of bot instead of API
+    > ​    3. JSON entry/data to train RASA (see elsewhere)
 - [Front-end](https://core.rasa.com) and [Tutorial](https://core.rasa.com/tutorial_basics.html)
 - Non-AI but Learn-Concept at [Chatbot Fundamentals](https://apps.worldwritable.com/tutorials/chatbot) and [Brobot](https://github.com/lizadaly/brobot)
 - Recall the Concept of chatbot 
@@ -3235,41 +3236,6 @@ print(test_text, doc.cats)
     6. Closure
 
 
-
-```python
-import spacy
-
-# init English model (download required for other langues)
-nlp = spacy.load('en', tagger=False,
-                parser=False, matcher=False)
-
-doc = nlp(article_uber)
-
-for entity in doc.ents:
-    print(entity.label_, entity.text)
-
-```
-
-    /Users/Ocean/anaconda3/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
-      return f(*args, **kwds)
-    /Users/Ocean/anaconda3/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: numpy.ufunc size changed, may indicate binary incompatibility. Expected 192, got 176
-      return f(*args, **kwds)
-
-
-    ORG Uber
-    ORG Uber
-    ORG Apple
-    ORG Uber
-    PERSON Travis Kalanick
-    ORG Uber
-    PERSON Tim Cook
-    ORG Apple
-    ORG Uber
-    GPE drivers’
-    LOC Silicon Valley’s
-    ORG Yahoo
-    PERSON Marissa Mayer
-    MONEY $186m
 
 
 # Polyglot NER `polygplot`
@@ -3563,8 +3529,8 @@ print(count_df.equals(tfidf_df))
     
     False
 
+### Testing using Naive Bayes Classifier
 
-# Testing using Naive Bayes Classifier
 - NB Model commonly used for testing NLP classificaiton problems
 - basis in probability
 - likelihood estimation
@@ -3632,8 +3598,8 @@ print(cm_tfidf)
     [[ 865  143]
      [  80 1003]]
 
+### Simple NLP, Complex Problems
 
-# Simple NLP, Complex Problems
 - Translation, grammar in languages
 - Word complexity in other languages
 - Sentiment shift
@@ -3721,6 +3687,9 @@ print(class_labels[1], feat_with_weights[-20:])
     FAKE [(-13.817639290604365, '0000'), (-13.817639290604365, '000035'), (-13.817639290604365, '0001'), (-13.817639290604365, '0001pt'), (-13.817639290604365, '000km'), (-13.817639290604365, '0011'), (-13.817639290604365, '006s'), (-13.817639290604365, '007'), (-13.817639290604365, '007s'), (-13.817639290604365, '008s'), (-13.817639290604365, '0099'), (-13.817639290604365, '00am'), (-13.817639290604365, '00p'), (-13.817639290604365, '00pm'), (-13.817639290604365, '014'), (-13.817639290604365, '015'), (-13.817639290604365, '018'), (-13.817639290604365, '01am'), (-13.817639290604365, '020'), (-13.817639290604365, '023')] 
     
     REAL [(-6.172241591175732, 'republicans'), (-6.126896127062493, 'percent'), (-6.115534950553315, 'political'), (-6.067024557833956, 'house'), (-5.9903983888515535, 'like'), (-5.986816295469049, 'just'), (-5.97418288622825, 'time'), (-5.964034477506528, 'states'), (-5.949002396420198, 'sanders'), (-5.844483857160232, 'party'), (-5.728156816243612, 'republican'), (-5.63452121120962, 'campaign'), (-5.5727798946931095, 'new'), (-5.515621480853161, 'state'), (-5.511414074572205, 'obama'), (-5.482207812723569, 'president'), (-5.455931002028523, 'people'), (-4.98170150128453, 'clinton'), (-4.5936919152219655, 'trump'), (-4.477148234163137, 'said')]
+
+
+
 
 
 # ChatBot
