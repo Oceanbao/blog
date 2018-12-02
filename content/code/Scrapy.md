@@ -7,11 +7,21 @@ draft: false
 
 <h1>Learning Scrapy</h1>
 
-**OUTLINE**
 
-[TOC]
+## Table of Contents
+1. [Basic Crawling](#basic)
+2. [Mobile App](#mobile)
+3. [Spider Recipes](#recipe)
+4. [Scrapinghub](#hub)
+5. [Configuration & Management](#config)
+6. [Programming Scrapy](#programming)
+7. [Pipeline Recipe](#pipeline)
+8. [Official Tutorial](#official)
 
-# Basic Crawling
+
+
+# Basic Crawling 
+<a name="basic"></a> 
 
 ### $UR^2IM$
 
@@ -126,7 +136,7 @@ item['title'] = response.xpath('//*[@itemprop="name"][1]/text()').extract()
 return item
 ```
 
-
+<a name="pipeline"></a>
 
 Now `scrape crawl basic` returns not LOG but DICT of the item. Scrapy is built around the ITEMs to be used by PIPELINEs for more functionalities.
 

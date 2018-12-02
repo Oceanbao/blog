@@ -9,8 +9,209 @@ tags: ["code", "ml"]
 
 
 # UNIX
+### Quick Reference
+
+**FILE**
+
+```bash
+rm -r #delete dir
+rm -f # force remove file
+cp -r dir1 dir2 # copy 1 to 2 creating dir2 if inexist
+ln -s file link # create symbolic link link to file
+```
+
+**Process**
+
+```bash
+killall proc # kill all processes named proc *
+bg # lists stopped or background jobs; 
+fg a # brings job a to foreground
+```
+
+**File Permissions**
+
+`chmod octal file`  change permissions of file to octal,
+
+**SSH**
+
+```bash
+ssh user@host
+ssh -p port user@host # connect to host on port port as user
+ssh-copy-id user@host # add key to host for user to enable a keyed or passwordless login
+```
+
+**Searching**
+
+```bash
+grep pattern files # search for pattern in files
+grep -r pattern dir # search recursively for pattern in dir
+command | grep pattern # search for pattern in output of command
+locate file # find all instances of file
+```
+
+**Sys info**
+
+```bash
+cal, uptime, 
+w # who is online
+finger user # info about user
+uname -a # kernel info
+cat /proc /cpuinfo
+cat /proc /meminfo
+df # disk usage
+du # dir space suage
+free # mem and swap usage
+whereis # possible loc of app
+which app # which app will be run by default
+```
+
+**Compression**
+
+```bash
+tar cf file.tar files # create a tar named file.tar containing files
+tar xf file.tar # extract files
+tar czf file.tar.gz files # create a tar with Gzip comp
+tar xzf file.tar.gz # extract tar using Gzip
+tar cjf file.tar.bz2 # creat tar with Bzip2
+gzip file # comp file and rename to file.gz (gzip -d)
+```
+
+**Network**
+
+```bash
+whois domain # get whois info for domain
+dig domain # get DNS info for domain
+dig -x host # reverse lookup host
+wget file
+```
+
+**Installation**
+
+```bash
+# install from source:
+./configure
+make
+make install
+dpkg -i pkg.deb # install a pckg (Debian)
+rpm -Uvh pkg.rpm
+```
+
+
+
 ### Find file in current dir with filename, full path printed
+
 find "$(pwd -P)" -name ".zshrc"
+
+### MAKE
+
+`make` reads `Makefile` defining set of tasks to be executed (e.g. compile a program from source code)
+
+```makefile
+say_hello: # func name, aka TARGET; DEPENDENCIES follow here
+	echo "Hello World" # RECIPE using DEPENDENCIES to make TARGET
+	
+target: prerequisites
+<TAB>recipe
+
+# a target might be binary file depending on prereq (source files) which can also be target depending on other deps
+
+final_target: sub_target final_target.c
+	Recipe_to_create_final_target
+sub_target: sub_target.c
+	Recipe_to_create_sub_target
+
+# To suppress echoing (refer to first example) the acutal CMD, add @
+say_hello:
+	@echo "Hello World"
+generate:
+	@echo "Creating empty text files..."
+	touch file-{1..10}.txt
+clean:
+	@echo "Cleaning up..."
+	rm *.txt
+# the first target is default goal! can be changed by inserting in head
+.DEFAULT_GOAL := generate
+# this phony target .DEFAULT_GOAL can run only one target at a time, why most makefiles include `all` as target that can call as many targets as needed:
+all: say_hello generate
+# Before running make, include another special phony target, .PHONY where defined all targets not files - make run its recipe regardless of whether a file with that name exists or what its last mod time is
+.PHONY:all say_hello generate clean
+all:say_hello generate
+
+# Good practice not to call clean in all or put it as first target. Manually as arg
+make clean
+
+# ADVANCED EX
+# Variables 
+CC := gcc # recursive expanded variable
+CC := ${CC}
+hello:hello.c
+	${CC}hello.c -o hello # recipe expands as below when passed 
+gcc hello.c -o hello
+# both ${CC} and £(CC) valid ref to call gcc
+all:
+	@echo ${CC}
+
+# Example: compile all C programs by using var, patterns, func
+
+# Usage:
+# make        # compile all binary
+# make clean  # remove ALL binaries and objects
+
+.PHONY = all clean
+
+CC = gcc                        # compiler to use
+
+LINKERFLAG = -lm
+
+SRCS := $(wildcard *.c)
+BINS := $(SRCS:%.c=%)
+
+all: ${BINS}
+
+%: %.o
+        @echo "Checking.."
+        ${CC} ${LINKERFLAG} $< -o $@
+
+%.o: %.c
+        @echo "Creating object.."
+        ${CC} -c $<
+
+clean:
+        @echo "Cleaning up..."
+        rm -rvf *.o ${BINS}
+```
+
+Run `make` outputting as expected
+
+* Not necessary target to be file, name for recipe could do 'phony targets'
+
+
+
+### SCREEN - Multiple Windows (virtual terminals) in UNIX
+
+* If local machine crashes / lose connection (e.g. SSH), the process or login sessions via `screen` persist - resumed with `screen -r` (may need ARG if multiple detached screens)
+  * In some crashes may need to manually "detach" before "Attach" 
+    * Find out current screens : `screen -list`
+    * Possible states : dead, attached, detached
+    * To detach : `screen -D [PID].[machine_arguments]`
+    * Resume : `screen -r [PID].[machine_arguments]`
+* Cut and paste between screens using CLI + Block copy feature + multiple pages copy/paste
+* Detach for resuming after logging out !
+
+```shell
+screen # start
+Ctrl-a c # create new window/shell
+Ctrl-a k # kill current window
+w # list all
+0-9 # switch window
+[ # start copy mode
+] # paste copied text
+D # power detach and logout
+d # detach but keep shell window open
+```
+
+* Copy a block : `Ctrl-a [` to move cursor (h, j, k, l) `0` or `^` moves to start and `$` moves to end ; `Ctrl-b` scrolls cursor back one page and `Ctrl-f` forward one ; to set left and right margins of copy `c` and `C` ; spacebar starts selecting text and ends ; to abort copy mode `Ctrl-g`
+* Other CMD : `screen unixcommand` in a new window
 
 ### 12 ML CLI
 - `wget <URL.ext>` 		file retriver for downloading files
