@@ -354,8 +354,20 @@ soffice --headless --convert-to pdf:"filename" /path/.xlsx
 
 # PYTHON and symlink
 
+### Rename Files
+
+```python
+import os, re, glob
+
+for file in glob.glob('*.pdf'):
+	new_name = "".join(re.findall('L\d\d|\.pdf', file))
+	os.rename(file, new_name)
+```
+
+
 
 ### Learnt about ln cmd to link .sh
+
 `brew unlink python && brew link python`
 ### this worked to create python with python3
 `sudo ln -s /usr/local/bin/python3 /usr/local/bin/python`
