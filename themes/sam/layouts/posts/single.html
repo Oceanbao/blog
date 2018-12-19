@@ -1,3 +1,9 @@
+<script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
+</script>
+
 {{ define "section_content" }}
 <div class="section" id="content">
     {{ .Date.Format (.Site.Params.dateForm | default "Mon Jan 02, 2006") }} &#183; {{ .WordCount }} words
