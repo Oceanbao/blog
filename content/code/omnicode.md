@@ -326,6 +326,30 @@ which filename # location of a file if it is in PATH
 
 [article](https://kvz.io/blog/2007/07/29/schedule-tasks-on-linux-using-crontab/)
 
+
+
+### YouTube/Video Downloader
+
+Format:
+
+`youtube-dl -F <URL>`
+
+Choosing index
+
+`youtube-dl -f 37 <URL>`
+
+Playlist
+
+`youtube-dl -cit <playlist_url>`
+
+Audio
+
+`youtube-dl -x --audio-format mp3 <video_url>`
+
+[Manual](https://github.com/rg3/youtube-dl/blob/master/README.md#readme)
+
+
+
 ## Regex e.g. using sed (stream editor)
 
 cat /etc/passwd | sed # dump to sed pattern space (i.e. /pattern/action)
