@@ -1,4 +1,4 @@
-baseurl                 = "/"               # Your domain name. Must end with "/"
+baseurl                 = "https://oceanbao.github.io/"               # Your domain name. Must end with "/"
 languageCode            = "en-us"
 defaultContentLanguage  = "en"
 isMultilingual          = true
@@ -8,6 +8,8 @@ pygmentsStyle           = "monokai"                     # https://help.farbox.co
 pygmentsCodefences      = true
 # googleAnalytics         = ""             # Tracking code, eg. "UA-111111111-1"
 
+[permalinks]
+  post = /:year/:month/:title/
 [params]
     dateform            = "Mon Oct 01, 2018"
     dateformfull        = "Mon Oct 2 2018 15:04:05 EST"

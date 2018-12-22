@@ -161,7 +161,7 @@ This module also defines an exception 'error'.
 | **.**     | Any character except line break                          | a.c                  | abc            |
 | **.**     | Any character except line break                          | .*                   | whatever, man. |
 | \**.**    | A period (special character: needs to be escaped by a \) | a\.c                 | a.c            |
-| \         | Escapes a special character                              | \.\*\+\?    \^\/\\ | .*+?    $^/\   |
+| \         | Escapes a special character                              | \.\*\+\?    \$\^\/\\ | .*+?    $^/\   |
 | \         | Escapes a special character                              | \[\{\(\)\}\]         | [{()}]         |
 
 
@@ -321,3 +321,34 @@ and
 | ------ | ------------------------------------------------------------ | ----------- | ------------ |
 | \K     | [Keep Out](https://www.rexegg.com/regex-best-trick.html#bsk) Perl, PCRE (C, PHP, R…), Python's alternate [*regex*](https://pypi.python.org/pypi/regex)engine, Ruby 2+: drop everything that was matched so far from the overall match to be returned | prefix\K\d+ | 12           |
 | \Q…\E  | Perl, PCRE (C, PHP, R…), Java: treat anything between the delimiters as a literal string. Useful to escape metacharacters. | \Q(C++ ?)\E | (C++ ?)      |
+
+
+
+### Curly Quotes
+
+```python
+'”'.encode()
+
+b'\xe2\x80\x9d'.decode()
+
+'“'.encode()
+
+b'\xe2\x80\x9c'.decode()
+
+'‘'.encode()
+
+b'\xe2\x80\x98'.decode()
+
+'’'.encode()
+
+b'\xe2\x80\x99'.decode()
+
+u'Say (?:["“”])(.*)(?:["“”])'
+# (?:["“”])    <-- Start non-capturing group, and match one of the three possible quote typesnot return it
+# (.*)         <-- Start a capture group, match anything and return it
+# (?:["“”])    <-- Stop matching the string until another quote is found
+
+from unidecode import unidecode
+line = unidecode('’')
+```
+
