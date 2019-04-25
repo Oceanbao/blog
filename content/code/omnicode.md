@@ -55,7 +55,15 @@ for file in glob.glob('*.pdf'):
 ### this worked to create python with python3
 `sudo ln -s /usr/local/bin/python3 /usr/local/bin/python`
 
+### Lost Symlink after Brew Update
+
+```shell
+find ./my-example-env -type l -delete
+mkvirtualenv my-example-env
+```
+
 ### also checkout env variables created in virtualwrapper
+
 WORKON_HOME=/Users/Ocean/.virtualenvs
 VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
@@ -443,7 +451,40 @@ CMD+CTR+G : select all matched characters
 
 ## DOCKER
 ==================================================================
+
+## Install Docker on Linux
+
+
+
+As of 2018, to install `docker-ce` on Ubuntu 16.04 or Ubuntu 18.04, the command for the automated install is:
+
+```
+curl https://get.docker.com | sudo sh
+```
+
+Read the security note printed in output toward the end of the install. Note that the script at the URL used above is maintained in the [docker-install](https://github.com/docker/docker-install/) repo.
+
+This installs the package and the repo. To confirm:
+
+```
+$ apt list docker-ce* 2>&- | grep installed
+docker-ce/now 5:18.09.0~3-0~ubuntu-xenial amd64 [installed,local]
+docker-ce-cli/now 5:18.09.0~3-0~ubuntu-xenial amd64 [installed,local]
+```
+
+Verify installation:
+
+```
+sudo docker run hello-world
+sudo docker version
+```
+
+Continue with [post-installation steps](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
+
+
+
 ## Basic
+
 docker --version
 docker version
 docker info

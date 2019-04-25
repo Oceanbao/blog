@@ -790,3 +790,27 @@ Audio
 
 [Manual](https://github.com/rg3/youtube-dl/blob/master/README.md#readme)
 
+
+
+### KILL PROC LISTENING ON PORT
+
+`lsof -n -i4TCP:8787 | grep LISTEN | awk '{ print $2 }' | xargs kill`
+
+
+
+
+
+### NETWORKING
+
+`ip addr` shows IPs, MAC, port status etc
+
+`ifconfig` similar output but including packets and bytes count
+
+`route` `-n`  route table
+
+`netstat -n` active connections
+
+`netstat -l -p` listening ports and procs
+
+`tcpdump` CLI Wireshark
+
