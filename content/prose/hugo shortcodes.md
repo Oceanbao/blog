@@ -8,17 +8,9 @@ tags: ["code"]
 
 Shortcodes are pre-made templates converting HTML codes into shortcodes in hugo. Here illustrates some:
 
-YouTube video:
-{{< youtube qtIqKaDlqXo >}}
-
-Tweet:
-{{< tweet 891036303864745984 >}}
-
 Permalink in hugo:
 [Qui]({{< relref "/qui.md">}})
 
-Instagram:
-{{< instagram BpTvWyhnJnL>}}
 
 Code higlighting:
 {{< highlight html >}}
