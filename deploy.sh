@@ -1,9 +1,10 @@
 #!/bin/bash
 
-echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
+# If a cmd fails then stop deploy
+echo -e
 
+printf "\033[0;32mDeploying updates to GitHub...\033[0m\n"
 
-rm public/* -rf
 
 # Build the project.
 hugo -t sam # if using a theme, replace with `hugo -t <YOURTHEME>`
