@@ -10,8 +10,6 @@ pygmentsCodefences      = true
 
 
 [params]
-    dateform            = "Mon Oct 01, 2018"
-    dateformfull        = "Mon Oct 2 2018 15:04:05 EST"
     favicon             = "oceanicon.jpg"
     homepage            = "main"                        # What to call the home page link
     galleryFolder       = "images/"                     # Where you've put your images, after "/content/gallery/"
