@@ -8,4 +8,4 @@ tags: ["blog","story"]
 
 # Title
 
-
+La vie, c'est une belle chose. Malheureusement, les gens qui la savent. 
