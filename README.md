@@ -1,2 +1,2 @@
 # blog
-Hugo Project File of oceanbao.github.io
+Hugo static page files of oceanbao.github.io
