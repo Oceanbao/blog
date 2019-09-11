@@ -23,7 +23,7 @@ rm -rf public
 echo "========= Updating Page Repo ========="
 cd ../page 
 
-echo 'Commit Message:' && read msg && git add -A && git commit -m '$msg' && git push
+echo 'Commit Message:' && read msg && git add -A && git commit -m $msg && git push
 
 cd ..
 
