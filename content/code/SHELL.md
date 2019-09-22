@@ -516,6 +516,43 @@ whois domain # get whois info for domain
 dig domain # get DNS info for domain
 dig -x host # reverse lookup host
 wget file
+
+# Examples
+wget URL/file.iso
+wget --output-document=filename.html example.com
+wget --directory-prefix=folder/subfolder example.com
+wget --continue example.com/big.file.iso
+wget --input list-of-file-urls.txt
+wget http://example.com/images/{1..20}.jpg
+wget --page-requisites --span-hosts --convert-links --adjust-extension http://example.com/dir/file
+
+# download all MP3 files from a subdir
+wget --level==1 --recursive --no-parent --accept mp3,MP3 http://example.com/mp3/
+# image
+wget --no-directories --recursive --no-clobber --accept jpg,gif,png,jpeg http://example.com/images/
+# pdf
+wget --mirror --domains=abc.com,files.abc.com,docs.abc.com --accept=pdf http://abc.com/
+# Restricted content
+wget --refer=http://google.com --user-agent="Mozzila/5.0 Firefox/4.0.1" http://nytimes.com
+wget --http-user=labnol --http-password=hello123 URL/secret/file.zip
+wget ‐‐cookies=on ‐‐save-cookies cookies.txt ‐‐keep-session-cookies ‐‐post-data ‘user=labnol&password=123’ http://example.com/login.php
+wget ‐‐cookies=on ‐‐load-cookies cookies.txt ‐‐keep-session-cookies http://example.com/paywall
+# get size of file w/o dl
+wget --spider --server-response URL/file.iso
+# cat
+wget --output-document --quiet URL
+# be nice
+wget --limit-rate=20k --wait=60 --random-wait --mirror URL
+
+# CURL
+
+# main age
+curl http://www.netscape.com/
+curl ftp://ftp.funet.fi/README
+curl http://www.weirdserver.com:8000/
+curl -u username: --key ~/.ssh/id_rsa scp://example.com/~/file.txt
+
+
 ```
 
 **Installation**

@@ -21,7 +21,7 @@ Example: matching phone number (chaining)
 `sed '/^daemon/d' # match starting-deamon and delete`
 `sed '/sh$/d' # del sh-ending`
 
-- special char: ^ ​$ . (any single char) * (>0 of previous char) [chars]
+l special char: ^ ​$ . (any single char) * (>0 of previous char) [chars]
 
 - Making a BIN exec of any application
 `Scripting {#!/bin/bash /Application/LibreOffice.app/Contents/MacOS/soffice "$@"}`
