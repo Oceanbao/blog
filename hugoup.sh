@@ -4,7 +4,7 @@ echo "========= Updating Blog Repo ========="
 
 cd /home/oceanbao/Git-Page/blog
 
-git add -A && git commit && git push
+~/bin/gitup.sh
 
 echo "========= Pulling Github Page ========="
 git clone git@github.com:Oceanbao/oceanbao.github.io.git ../page
@@ -23,7 +23,7 @@ rm -rf public
 echo "========= Updating Page Repo ========="
 cd ../page 
 
-git add -A && git commit && git push
+~/bin/gitup.sh
 
 cd ..
 

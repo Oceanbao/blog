@@ -1,5 +1,5 @@
 ---
-title: "BASH"
+title: "SHELL"
 date: 2018-12-22T17:01:17-05:00
 showDate: true
 draft: false
@@ -850,4 +850,58 @@ Audio
 `netstat -l -p` listening ports and procs
 
 `tcpdump` CLI Wireshark
+
+
+
+### MISC
+
+GITUP SCRIPT (passing read arg)
+
+```shell
+read -p "Some prompt msg..." msg </dev/tty
+...
+git commit -m "$msg"
+```
+
+
+
+XARGS - map args to cmd
+
+```shell
+echo ".\n..\n../.." | xargs ls
+```
+
+
+
+UNIX MacOS open
+
+```shell
+xdg-open index.html
+```
+
+
+
+STDIN/OUT/ERR
+
+```shell
+echo "stdout" >&1
+echo "stderr" >&2
+
+# pkg above into sh 'test'
+# redirect stout to /dev/null
+./test 1>/dev/null
+
+#Redirect all to /dev/null
+./test &>/dev/null
+
+# Send output to stdout and any number of additioanl locations with tee
+ls && echo "test" | tee file1 file2 file3 && ls
+
+# | pipe stdout to input, > < takes input elsewhere
+printf "1\n2\n3" > file && sort < file
+```
+
+
+
+
 
