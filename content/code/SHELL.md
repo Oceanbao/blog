@@ -901,6 +901,26 @@ ls && echo "test" | tee file1 file2 file3 && ls
 printf "1\n2\n3" > file && sort < file
 ```
 
+TEXT EDIT
+
+```shell
+# using sed - this doesn
+find .txt -exec sed -i '1s/^/task goes here\n/' todo.txt
+# add <text> on first 10 lines
+sed -i '1,10s/^/<text> /' file
+ 
+ # sub
+ cat <(echo "before") text.txt > newfile.txt
+
+
+
+# Append/prepend text to file in loops
+for file in *.txt ; do
+  printf '%s\n' 0a this is text . w | ed -s "$file"
+done
+
+# Edit additional text (extra step)
+# define text in .txt
 
 
 

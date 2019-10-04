@@ -41,20 +41,21 @@ word_regex = '\w+'
 re.match(word_regex, 'hi there!')
 ```
 ### Common Regex Patterns
-- ```\w+``` [word, 'Magic']
-- ```\d``` [digit, 9]
-- ```\s``` [space, '']
-- ```.*``` [wildcard, 'usename74']
-- ```+ or *``` [greedy, 'aaaaa']
-- capitalised = Negation, ```\S``` [Not space, 'no_spaces']
-- ```[a-z]``` [lowercase group, 'abcedfg']
-
-> return depends, iter, string, or match object
-
-> useful for preprocessing before **TOKENISATION**
-
 
 ```python
+ ```\w+``` [word, 'Magic']
+ ```\d``` [digit, 9]
+ ```\s``` [space, '']
+ ```.*``` [wildcard, 'usename74']
+ ```+ or *``` [greedy, 'aaaaa']
+ capitalised = Negation, ```\S``` [Not space, 'no_spaces']
+ ```[a-z]``` [lowercase group, 'abcedfg']
+
+>>> return depends, iter, string, or match object
+
+>>> useful for preprocessing before **TOKENISATION**
+
+
 my_string = "Let's write RegEx!  Won't that be fun?  I sure think so.  Can you find 4 sentences?  Or perhaps, all 19 words?"
 
 
@@ -74,7 +75,6 @@ print("\n", re.split(spaces, my_string))
 
 digits = r"\d+"
 print("\n",re.findall(digits, my_string))
-```
 
 
      ["Let's write RegEx", "  Won't that be fun", '  I sure think so', '  Can you find 4 sentences', '  Or perhaps, all 19 words', '']
@@ -83,7 +83,7 @@ print("\n",re.findall(digits, my_string))
      ["Let's", 'write', 'RegEx!', "Won't", 'that', 'be', 'fun?', 'I', 'sure', 'think', 'so.', 'Can', 'you', 'find', '4', 'sentences?', 'Or', 'perhaps,', 'all', '19', 'words?']
     
      ['4', '19']
-
+```
 
 ## Tokenisation
 - preparing text for NLP
@@ -123,7 +123,6 @@ print('\n',tokenize_sent)
 unique_tokens = set(word_tokenize(scene_one))
 
 print('\n',unique_tokens)
-```
 
 
      ['SCENE 1: [wind] [clop clop clop] \nKING ARTHUR: Whoa there!', '[clop clop clop] \nSOLDIER #1: Halt!', 'Who goes there?']
@@ -131,7 +130,7 @@ print('\n',unique_tokens)
      ['ARTHUR', ':', 'It', 'is', 'I', ',', 'Arthur', ',', 'son', 'of', 'Uther', 'Pendragon', ',', 'from', 'the', 'castle', 'of', 'Camelot', '.']
     
      {'they', 'Not', 'husk', 'using', 'fly', 'under', 'tropical', 'That', 'lord', 'point', 'use', 'sovereign', 'winter', 'wants', 'to', 'second', 'Uther', 'ounce', 'together', 'five', 'by', '!', '1', 'coconut', ']', 'and', 'Patsy', 'Saxons', '2', 'join', 'or', 'pound', 'Halt', 'there', 'goes', 'is', 'Yes', 'seek', 'go', 'master', 'do', 'that', 'martin', "'re", 'warmer', 'son', 'ridden', 'SOLDIER', 'with', 'could', ',', "'em", 'Mercea', 'agree', 'mean', 'A', 'KING', 'clop', 'one', 'court', 'You', 'It', 'two', '--', 'get', 'our', 'must', 'They', 'Pendragon', 'forty-three', 'south', 'back', 'bird', 'ratios', '?', 'migrate', 'here', 'breadth', 'will', 'he', 'empty', 'other', 'creeper', "'d", 'the', 'So', 'Will', 'Wait', 'Arthur', 'why', 'got', 'interested', 'have', 'house', 'defeator', 'where', 'Britons', 'dorsal', 'In', 'carried', 'maintain', 'your', 'halves', 'Listen', 'Supposing', 'my', 'length', 'We', 'found', 'temperate', 'Court', 'strangers', 'tell', 'anyway', '[', 'on', 'through', 'Whoa', 'you', 'be', 'England', 'horse', 'yeah', 'am', 'just', "'s", "n't", '#', 'all', 'may', 'African', 'Are', 'land', 'in', 'line', 'Well', 'needs', 'this', 'European', 'Where', 'zone', 'ARTHUR', 'minute', 'castle', 'from', 'Please', 'trusty', 'swallows', "'m", 'then', 'these', 'every', 'simple', 'grip', 'held', 'strand', 'guiding', 'maybe', '...', "'", 'swallow', 'speak', 'weight', 'Found', 'beat', 'me', 'bangin', 'but', 'King', 'What', 'SCENE', 'are', 'kingdom', 'grips', 'velocity', 'suggesting', 'times', 'Pull', 'of', 'Camelot', 'But', 'The', 'question', 'an', 'Ridden', 'snows', '.', "'ve", 'No', 'matter', 'at', 'covered', 'servant', 'who', 'order', 'non-migratory', 'them', 'climes', 'Oh', 'feathers', 'it', 'Am', 'air-speed', 'its', 'plover', 'carrying', 'wings', 'Who', 'wind', 'ask', 'knights', 'I', 'bring', 'if', 'not', 'a', 'does', 'yet', 'course', 'coconuts', 'carry', ':', 'right', 'search', 'sun', 'since'}
-
+```
 
 
 ```python
@@ -150,12 +149,11 @@ print(re.search(pattern1, scene_one))
 # Find the script notation at the beginning of the fourth sentence and print it
 pattern2 = r"[\w\s]+:"
 print(re.match(pattern2, sentences[3]))
-```
 
     580 588
     <_sre.SRE_Match object; span=(9, 32), match='[wind] [clop clop clop]'>
     <_sre.SRE_Match object; span=(0, 7), match='ARTHUR:'>
-
+```
 
 ## Advanced Tokenisation
 - **union** |
@@ -182,10 +180,6 @@ my_string = "SOLDIER #1: Found them? In Mercea? The coconut's tropical!"
 from nltk.tokenize import regexp_tokenize
 
 regexp_tokenize(my_string, '(\w+|#\d|\?|!)')
-```
-
-
-
 
     ['SOLDIER',
      '#1',
@@ -200,7 +194,7 @@ regexp_tokenize(my_string, '(\w+|#\d|\?|!)')
      's',
      'tropical',
      '!']
-
+```
 
 
 
@@ -223,12 +217,11 @@ tweetTK = TweetTokenizer()
 all_tokens = [tweetTK.tokenize(t) for t in tweets]
 
 print('\n', all_tokens)
-```
 
     ['#nlp', '#python', '#NLP', '#learning', '@datacamp', '#nlp', '#python']
     
      [['This', 'is', 'the', 'best', '#nlp', 'exercise', 'ive', 'found', 'online', '!', '#python'], ['#NLP', 'is', 'super', 'fun', '!', '<3', '#learning'], ['Thanks', '@datacamp', ':)', '#nlp', '#python']]
-
+```
 
 
 ```python
@@ -239,13 +232,9 @@ german_text = 'Wann gehen wir Pizza essen? 🍕 Und fährst du mit Über? 🚕'
 from nltk.tokenize import word_tokenize
 
 word_tokenize
-```
-
-
-
 
     <function nltk.tokenize.word_tokenize(text, language='english', preserve_line=False)>
-
+```
 
 
 #### Unicode ranges for emoji are:
@@ -265,13 +254,13 @@ print('\n', regexp_tokenize(german_text, capital_german))
 emoji = "['\U0001F300-\U0001F5FF'|'\U0001F600-\U0001F64F'|'\U0001F680-\U0001F6FF'|'\u2600-\u26FF\u2700-\u27BF']"
 
 print('\n', regexp_tokenize(german_text, emoji))
-```
 
     ['Wann', 'gehen', 'wir', 'Pizza', 'essen', '?', '🍕', 'Und', 'fährst', 'du', 'mit', 'Über', '?', '🚕']
     
      ['Wann', 'Pizza', 'Und', 'Über']
     
      ['🍕', '🚕']
+```
 
 
 ## Charting Word Length
@@ -296,21 +285,12 @@ line_num_words = [len(t_line) for t_line in grail_tokenised]
 
 plt.hist(line_num_words)
 plt.show()
-```
-
-
-
 
     (array([916., 177.,  52.,  22.,   9.,   4.,   4.,   5.,   1.,   2.]),
      array([  0. ,  10.3,  20.6,  30.9,  41.2,  51.5,  61.8,  72.1,  82.4,
              92.7, 103. ]),
      <a list of 10 Patch objects>)
-
-
-
-
-![png](output_14_1.png)
-
+```
 
 # Bag-of-word Counting
 - Tokenise-Count flow
@@ -334,16 +314,11 @@ bow_wiki_debugging = Counter(wiki_debugging_lower)
 print(bow_wiki_debugging.most_common(10))
 
 type(bow_wiki_debugging)
-```
 
     [(',', 151), ('the', 150), ('.', 89), ('of', 81), ("''", 66), ('to', 63), ('a', 60), ('``', 47), ('in', 44), ('and', 41)]
 
-
-
-
-
     collections.Counter
-
+```
 
 
 ## Text Preprocessing
@@ -355,8 +330,6 @@ type(bow_wiki_debugging)
     - `from ntlk.corpus import stopwords`
       `[... if t not in stopwords.words('english')]`
 - try and error method to context
-
-
 
 
 ```python
@@ -376,10 +349,9 @@ lemmatized = [wordnet_lemmatizer.lemmatize(t) for t in no_stops]
 bow = Counter(lemmatized)
 
 print(bow.most_common(10))
-```
 
     [('debugging', 40), ('system', 25), ('bug', 17), ('software', 16), ('problem', 15), ('tool', 15), ('computer', 14), ('process', 13), ('term', 13), ('debugger', 13)]
-
+```
 
 ## GENSIM
 - open NLP lib using top academic models to action complex tasks
@@ -430,14 +402,8 @@ for filepath in glob.glob(os.path.join('Data_Folder/TxT/wiki_txt2/', '*.txt')):
 len(article_sum)
 for i in range(len(article_sum)):
     print(len(article_sum[i]))
-```
-
-
-
 
     12
-
-
 
     4095
     2894
@@ -451,7 +417,7 @@ for i in range(len(article_sum)):
     1271
     722
     3045
-
+```
 
 
 ```python
@@ -466,11 +432,10 @@ print(dictionary.get(computer_id))
 corpus = [dictionary.doc2bow(article) for article in article_sum]
 
 print(corpus[4][:10]) # 5th doc first 10 mots
-```
 
     computer
     [(4, 1), (6, 6), (7, 2), (9, 5), (18, 1), (19, 1), (20, 1), (22, 1), (24, 2), (28, 3)]
-
+```
 
 
 ```python
@@ -501,11 +466,6 @@ sorted_word_count = sorted(total_word_count.items(), key=lambda w: w[1], reverse
 for id, count in sorted_word_count[:5]:
     print(dictionary.get(id), count)
 
-```
-
-
-
-
     [(4, 1), (6, 6), (7, 2), (9, 5)]
 
 
@@ -520,6 +480,7 @@ for id, count in sorted_word_count[:5]:
     cite 322
     ref 259
     code 235
+```
 
 
 # Tf-idf + Gensim
@@ -556,7 +517,6 @@ sorted_tfidf_weights = sorted(tfidf_weights, key=lambda w: w[1], reverse=True)
 
 for id, weight in sorted_tfidf_weights[:5]:
     print(dictionary.get(id), weight)
-```
 
     [(4, 0.005117037137639146), (6, 0.005095225240405224), (7, 0.00815539037400173), (9, 0.02558518568819573), (18, 0.003228490980266662)] 
     
@@ -565,7 +525,7 @@ for id, weight in sorted_tfidf_weights[:5]:
     manchester 0.14187397800439872
     alu 0.13888822917806967
     thomson 0.12731421007989718
-
+```
 
 # Named Entity Recognition
 - Motif: NLP task to identify important NE in the text
@@ -605,9 +565,6 @@ for sent in chunked_sentences:
         if hasattr(chunk, "label") and chunk.label() == "NE":
             print(chunk)
 
-
-```
-
     (NE Uber/NNP)
     (NE Beyond/NN)
     (NE Apple/NNP)
@@ -620,7 +577,7 @@ for sent in chunked_sentences:
     (NE CEO/NNP)
     (NE Yahoo/NNP)
     (NE Marissa/NNP Mayer/NNP)
-
+```
 
 
 ```python
@@ -650,31 +607,6 @@ plt.pie(values, labels=labels, autopct='%1.1f%%', startangle=140)
 
 plt.show()
 ```
-
-
-
-
-    ([<matplotlib.patches.Wedge at 0x1a2bd896a0>,
-      <matplotlib.patches.Wedge at 0x1a2bd89da0>,
-      <matplotlib.patches.Wedge at 0x1a2bd8e4e0>,
-      <matplotlib.patches.Wedge at 0x1a2bd8ebe0>,
-      <matplotlib.patches.Wedge at 0x1a2bd58320>],
-     [Text(-1.07181,0.247446,'ORGANIZATION'),
-      Text(0.341578,-1.04562,'GPE'),
-      Text(0.201317,1.08142,'PERSON'),
-      Text(-0.811594,0.742506,'LOCATION'),
-      Text(-0.832466,0.719027,'FACILITY')],
-     [Text(-0.584622,0.134971,'15.0%'),
-      Text(0.186315,-0.570339,'52.3%'),
-      Text(0.109809,0.589866,'31.8%'),
-      Text(-0.442688,0.405003,'0.5%'),
-      Text(-0.454073,0.392197,'0.5%')])
-
-
-
-
-![png](output_28_1.png)
-
 
 # SpaCy - NLP library similar to Gensim 
 - Focus on creating pipeline to generate models and corpora
@@ -892,6 +824,7 @@ texts = [bigram[line] for line in texts] # each line having all possible bi-gram
 - Preprocess can be as complex as need dictates
 - EX Removing both high-freq and low-freq words (GENSIM `dictionary` module) 
 > Rid of occurence < 20 documents, or in > 50% of documents
+
 ```python
 dictionary.filter_extremes(no_below=20, no_above=0.5)
 ```
@@ -900,6 +833,7 @@ dictionary.filter_extremes(no_below=20, no_above=0.5)
 
 
 ## POS-Tagging and Applications
+
 - What
     1. Not possible to tag POS unless in sentence or phrase
     2. SpaCy has 19 POS tags `.tag_` attr and `.pos_`
@@ -3468,7 +3402,6 @@ print(tfidf_vectorizer.get_feature_names()[:10])
 
 print(tfidf_train.A[:5])
 
-```
 
     ['00', '000', '0000', '00000031', '000035', '00006', '0001', '0001pt', '000ft', '000km']
     [[0. 0. 0. ... 0. 0. 0.]
@@ -3476,7 +3409,7 @@ print(tfidf_train.A[:5])
      [0. 0. 0. ... 0. 0. 0.]
      [0. 0. 0. ... 0. 0. 0.]
      [0. 0. 0. ... 0. 0. 0.]]
-
+```
 
 
 ```python
@@ -3492,7 +3425,6 @@ print(difference, '\n')
 
 print(count_df.equals(tfidf_df))
 
-```
 
        00  000  0000  00000031  000035  00006  0001  0001pt  000ft  000km  ...    \
     0   0    0     0         0       0      0     0       0      0      0  ...     
@@ -3528,6 +3460,7 @@ print(count_df.equals(tfidf_df))
     set() 
     
     False
+```
 
 ### Testing using Naive Bayes Classifier
 
@@ -3585,10 +3518,6 @@ print(score_tfidf)
 cm_tfidf = metrics.confusion_matrix(y_test, pred, labels=['FAKE', 'REAL'])
 print(cm_tfidf)
 
-```
-
-
-
 
     MultinomialNB(alpha=1.0, class_prior=None, fit_prior=True)
 
@@ -3597,6 +3526,7 @@ print(cm_tfidf)
     0.893352462936394
     [[ 865  143]
      [  80 1003]]
+```
 
 ### Simple NLP, Complex Problems
 
@@ -3627,7 +3557,6 @@ for alpha in alphas:
     print('Score: ', train_and_predict(alpha))
     print()
     
-```
 
     Alpha:  0.0
     Score:  0.8813964610234337
@@ -3664,7 +3593,7 @@ for alpha in alphas:
     
     Alpha:  0.9
     Score:  0.8589191774270684
-
+```
 
 
 
@@ -3682,12 +3611,10 @@ print(class_labels[0], feat_with_weights[:20], '\n')
 # Print the second class label and the bottom 20 feat_with_weights entries
 print(class_labels[1], feat_with_weights[-20:])
 
-```
-
     FAKE [(-13.817639290604365, '0000'), (-13.817639290604365, '000035'), (-13.817639290604365, '0001'), (-13.817639290604365, '0001pt'), (-13.817639290604365, '000km'), (-13.817639290604365, '0011'), (-13.817639290604365, '006s'), (-13.817639290604365, '007'), (-13.817639290604365, '007s'), (-13.817639290604365, '008s'), (-13.817639290604365, '0099'), (-13.817639290604365, '00am'), (-13.817639290604365, '00p'), (-13.817639290604365, '00pm'), (-13.817639290604365, '014'), (-13.817639290604365, '015'), (-13.817639290604365, '018'), (-13.817639290604365, '01am'), (-13.817639290604365, '020'), (-13.817639290604365, '023')] 
     
     REAL [(-6.172241591175732, 'republicans'), (-6.126896127062493, 'percent'), (-6.115534950553315, 'political'), (-6.067024557833956, 'house'), (-5.9903983888515535, 'like'), (-5.986816295469049, 'just'), (-5.97418288622825, 'time'), (-5.964034477506528, 'states'), (-5.949002396420198, 'sanders'), (-5.844483857160232, 'party'), (-5.728156816243612, 'republican'), (-5.63452121120962, 'campaign'), (-5.5727798946931095, 'new'), (-5.515621480853161, 'state'), (-5.511414074572205, 'obama'), (-5.482207812723569, 'president'), (-5.455931002028523, 'people'), (-4.98170150128453, 'clinton'), (-4.5936919152219655, 'trump'), (-4.477148234163137, 'said')]
-
+```
 
 
 
@@ -3801,7 +3728,6 @@ send_message("what's today's weather?")
 # Send messages which don't end with a question mark
 send_message("I love building chatbots")
 send_message("I love building chatbots")
-```
 
     USER : what's today's weather?
     BOT : I don't know :(
@@ -3811,7 +3737,7 @@ send_message("I love building chatbots")
     BOT : I find that extremely interesting
     USER : I love building chatbots
     BOT : tell me more!
-
+```
 
 ### Using Regex to Match Pattern and Respond
 
@@ -4347,10 +4273,6 @@ conn = sqlite3.connect('Data_Folder/hotels.db')
 
 conn
 ```
-
-
-
-
     <sqlite3.Connection at 0x12a847c70>
 
 
@@ -4392,14 +4314,7 @@ c.execute('SELECT * FROM hotels WHERE area=? AND price=?', t)
 print(c.fetchall())
 
 ```
-
-
-
-
     <sqlite3.Cursor at 0x12a8339d0>
-
-
-
     [('Grand Hotel', 'hi', 'south', 5)]
 
 
