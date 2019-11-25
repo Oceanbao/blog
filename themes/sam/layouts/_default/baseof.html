@@ -17,9 +17,12 @@
 </head>
 
 <body>
+
     {{ block "main" . }}<div class="wrap">
         {{ block "section_title" . }}<div class="section" id="title">{{ .Title }}</div>{{ end }}
-
+        <aside>
+            {{ .TableOfContents }}
+        </aside>
         {{ block "section_content" . }}<div class="section" id="content">{{ .Content }}</div>{{ end }}
 
         {{ block "bottom-menu" . }}

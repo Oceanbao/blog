@@ -2,7 +2,7 @@
 
 echo "========= Updating Blog Repo ========="
 
-cd /home/oceanbao/Git-Page/blog
+cd /home/oceanbao/HACKING/GPage/blog
 
 ~/bin/gitup.sh
 
