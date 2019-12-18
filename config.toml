@@ -34,10 +34,6 @@ pygmentsCodefences      = true
     text = "notebook"
 
 [[params.mainMenu]]
-    link = "https://github.com/Oceanbao/KEN"
-    text = "KEN"
-
-[[params.mainMenu]]
     link = "/prose"
     text = "prose"
 
