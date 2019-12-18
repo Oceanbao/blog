@@ -1,3 +1,10 @@
+---
+title: "WebAssembly"
+date: 2019-12-018T15:52:43-05:00
+showDate: true
+draft: false
+---
+
 # WHAT
 
 > WASM is a binary instruction format for a stack-based virtual machine. It's designed as a portable target for compilation of high-level languages like C++, enabling deployment on the web for client and server applications. It defines an Abstract Syntax Tree (AST) which gets stored in a **binary format**
