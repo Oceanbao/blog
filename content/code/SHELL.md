@@ -921,7 +921,19 @@ done
 
 # Edit additional text (extra step)
 # define text in .txt
+```
 
+## SSL/TSL
 
+```shell
+openssl genrsa -out example.key 2048
 
+# create CSR (certified signing request) per private key
+openssl req -new -key example.key -out example.csr \
+-subj "/C=US/ST=TX/L=Dallas/O=Red Hat/OU=IT/CN=test.example.com"
+
+# create certificate per CSR and private key
+openssl x509 -req -days 366 -in example.csr \
+-signkey example.key -out example.crt
+```
 
