@@ -1,0 +1,116 @@
+INFO 2020/04/17 23:17:28 No translation bundle found for default language "en"
+INFO 2020/04/17 23:17:28 Translation func for language en not found, use default.
+INFO 2020/04/17 23:17:28 i18n not initialized; if you need string translations, check that you have a bundle in /i18n that matches the site language or the default language.
+INFO 2020/04/17 23:17:28 Using config file: 
+Building sites … INFO 2020/04/17 23:17:28 syncing static files to /
+
+                   | EN  
+-------------------+-----
+  Pages            | 57  
+  Paginator pages  |  0  
+  Non-page files   | 18  
+  Static files     |  6  
+  Processed images |  0  
+  Aliases          |  0  
+  Sitemaps         |  1  
+  Cleaned          |  0  
+
+Built in 1020 ms
+Watching for changes in /home/oceanbao/blog/{archetypes,content,data,layouts,static,themes}
+Watching for config changes in /home/oceanbao/blog/config.toml
+Environment: "development"
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
+INFO 2020/04/17 23:18:29 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-17 23:18:29.825 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 990 ms
+INFO 2020/04/17 23:18:41 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-17 23:18:41.825 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 904 ms
+INFO 2020/04/17 23:21:38 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-17 23:21:38.825 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 904 ms
+INFO 2020/04/17 23:22:20 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-17 23:22:20.825 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 1043 ms
+INFO 2020/04/17 23:31:28 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-17 23:31:28.825 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 901 ms
+INFO 2020/04/17 23:32:11 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-17 23:32:11.825 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 849 ms
+INFO 2020/04/17 23:32:46 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-17 23:32:46.825 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 860 ms
+INFO 2020/04/18 10:07:33 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-18 10:07:33.879 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 1335 ms
+INFO 2020/04/18 10:10:23 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-18 10:10:23.826 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 894 ms
+INFO 2020/04/18 10:15:43 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-18 10:15:43.826 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 1158 ms
+INFO 2020/04/18 10:22:25 Received System Events: ["/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": CHMOD]
+
+Change detected, rebuilding site.
+2020-04-18 10:22:25.825 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 1127 ms
+INFO 2020/04/18 11:18:02 Received System Events: ["/home/oceanbao/blog/content/code/.~nginx.md": CREATE]
+INFO 2020/04/18 11:18:03 Received System Events: ["/home/oceanbao/blog/content/code/.~nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/.~nginx.md": REMOVE]
+
+Change detected, rebuilding site.
+2020-04-18 11:18:03.875 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 1268 ms
+INFO 2020/04/18 11:56:31 Received System Events: ["/home/oceanbao/blog/content/code/.~nginx.md": CREATE "/home/oceanbao/blog/content/code/.~nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/.~nginx.md": REMOVE]
+
+Change detected, rebuilding site.
+2020-04-18 11:56:31.870 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 1347 ms
+INFO 2020/04/22 19:02:40 Received System Events: ["/home/oceanbao/blog/content/code/.~nginx.md": CREATE "/home/oceanbao/blog/content/code/.~nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/.~nginx.md": REMOVE]
+
+Change detected, rebuilding site.
+2020-04-22 19:02:40.324 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 2636 ms
+INFO 2020/04/22 20:44:14 Received System Events: ["/home/oceanbao/blog/content/code/.~nginx.md": CREATE "/home/oceanbao/blog/content/code/.~nginx.md": WRITE "/home/oceanbao/blog/content/code/nginx.md": WRITE "/home/oceanbao/blog/content/code/.~nginx.md": REMOVE]
+
+Change detected, rebuilding site.
+2020-04-22 20:44:14.086 +0800
+Source changed "/home/oceanbao/blog/content/code/nginx.md": WRITE
+Total in 1781 ms

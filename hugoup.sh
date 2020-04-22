@@ -1,12 +1,11 @@
 #!/bin/bash
 
-echo "========= Updating Blog Repo ========="
-
-cd /home/oceanbao/HACKING/GPage/blog
-
-~/bin/gitup.sh
+set -e
 
 echo "========= Pulling Github Page ========="
+
+mkdir ../page
+
 git clone git@github.com:Oceanbao/oceanbao.github.io.git ../page
 
 rm -rf ../page/*/
@@ -16,14 +15,15 @@ echo "========= Copying Public to Page ========="
 
 hugo -t sam
 
-cp -rf public/* ../page
+cp -r public/* ../page
 
-rm -rf public 
+rm -rf public
 
 echo "========= Updating Page Repo ========="
+
 cd ../page 
 
-~/bin/gitup.sh
+git add -A && git commit -m "`date`: updated blog" && git push
 
 cd ..
 
