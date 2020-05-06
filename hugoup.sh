@@ -2,31 +2,27 @@
 
 set -e
 
-echo "========= Pulling Github Page ========="
+printf "\033[0;32mDeploying updates to GitHub...\033[0m\n"
 
-mkdir ../page
 
-git clone git@github.com:Oceanbao/oceanbao.github.io.git ../page
-
-rm -rf ../page/*/
-rm -rf ../page/*
-
-echo "========= Copying Public to Page ========="
-
+echo "========= Building hugo site =========" 
 hugo -t sam
 
-cp -r public/* ../page
 
-rm -rf public
+echo "========= Updating repo =========" 
+# update `public` upstream git repo
+git add .
 
-echo "========= Updating Page Repo ========="
+# Commit changes.
+msg="rebuilding site $(date)"
+if [ -n "$*" ]; then
+	msg="$*"
+fi
+git commit -m "$msg"
 
-cd ../page 
+# Push source and build repos.
+git push origin master
 
-git add -A && git commit -m "`date`: updated blog" && git push
 
-cd ..
-
-rm -rf page
-
-echo "===========Fin de programme=========="
+echo "========= FIN de CODE=========" 
+l public

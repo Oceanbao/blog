@@ -1,8 +1,11 @@
 ---
 title: "Ecriture Journalistique"
-date: 2020-05-06T20:55:56+08:00
-draft: true
+date: 2020-05-06T21:26:15+08:00
+showDate: true
+draft: false
+tags: ["blog","story"]
 ---
+
 
 # Écriture journalistique - Université de Montréal
 
